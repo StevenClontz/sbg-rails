@@ -15,5 +15,14 @@
   <%= @standard.category %>
 </p>
 
+<p>
+  <strong>Exams:</strong>
+  <ul>
+    <% @standard.exams.each do |exam| %>
+      <li><%= link_to exam.name, exam_path(exam) %></li>
+    <% end %>
+  </ul>
+</p>
+
 <%= link_to 'Edit', edit_standard_path(@standard) %> |
 <%= link_to 'Back', standards_path %>

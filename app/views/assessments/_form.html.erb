@@ -21,6 +21,16 @@
     <%= f.text_field :description %>
   </div>
 
+  <div class="field">
+    <%= f.label :exam %>
+    <%= f.collection_select(:exam_id, Exam.all, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :standard %>
+    <%= f.collection_select(:standard_id, Standard.all, :id, :name) %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
