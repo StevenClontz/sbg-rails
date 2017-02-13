@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @standard.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @standard.description %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @standard.category %>
+</p>
+
+<%= link_to 'Edit', edit_standard_path(@standard) %> |
+<%= link_to 'Back', standards_path %>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Standards</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @standards.each do |standard| %>
+      <tr>
+        <td><%= standard.name %></td>
+        <td><%= standard.description %></td>
+        <td><%= standard.category %></td>
+        <td><%= link_to 'Show', standard %></td>
+        <td><%= link_to 'Edit', edit_standard_path(standard) %></td>
+        <td><%= link_to 'Destroy', standard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Standard', new_standard_path %>
