@@ -9,6 +9,15 @@
   </head>
 
   <body>
+    <h1>sbg-rails</h1>
+    <p>
+      <%= link_to "Students", students_path %>
+      <%= link_to "Standards", standards_path %>
+      <%= link_to "Exams", exams_path %>
+      <%= link_to "Assessments", assessments_path %>
+      <%= link_to "Results", results_path %>
+    </p>
+    <hr>
     <%= yield %>
   </body>
 </html>
