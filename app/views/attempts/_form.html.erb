@@ -1,10 +1,10 @@
-<%= form_for(result) do |f| %>
-  <% if result.errors.any? %>
+<%= form_for(attempt) do |f| %>
+  <% if attempt.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(result.errors.count, "error") %> prohibited this result from being saved:</h2>
+      <h2><%= pluralize(attempt.errors.count, "error") %> prohibited this attempt from being saved:</h2>
 
       <ul>
-      <% result.errors.full_messages.each do |message| %>
+      <% attempt.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

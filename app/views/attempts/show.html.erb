@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Outcome:</strong>
+  <%= @attempt.outcome %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @attempt.note %>
+</p>
+
+<%= link_to 'Edit', edit_attempt_path(@attempt) %> |
+<%= link_to 'Back', attempts_path %>

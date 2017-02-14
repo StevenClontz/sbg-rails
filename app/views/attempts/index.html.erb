@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Attempts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Outcome</th>
+      <th>Note</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attempts.each do |attempt| %>
+      <tr>
+        <td><%= attempt.outcome %></td>
+        <td><%= attempt.note %></td>
+        <td><%= link_to 'Show', attempt %></td>
+        <td><%= link_to 'Edit', edit_attempt_path(attempt) %></td>
+        <td><%= link_to 'Destroy', attempt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Result', new_attempt_path %>

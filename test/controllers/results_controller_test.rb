@@ -2,47 +2,47 @@ require 'test_helper'
 
 class ResultsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @result = results(:one)
+    @attempt = attempts(:one)
   end
 
   test "should get index" do
-    get results_url
+    get attempts_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_result_url
+    get new_attempt_url
     assert_response :success
   end
 
-  test "should create result" do
+  test "should create attempt" do
     assert_difference('Result.count') do
-      post results_url, params: { result: { note: @result.note, outcome: @result.outcome } }
+      post attempts_url, params: { attempt: { note: @attempt.note, outcome: @attempt.outcome } }
     end
 
-    assert_redirected_to result_url(Result.last)
+    assert_redirected_to attempt_url(Result.last)
   end
 
-  test "should show result" do
-    get result_url(@result)
+  test "should show attempt" do
+    get attempt_url(@attempt)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_result_url(@result)
+    get edit_attempt_url(@attempt)
     assert_response :success
   end
 
-  test "should update result" do
-    patch result_url(@result), params: { result: { note: @result.note, outcome: @result.outcome } }
-    assert_redirected_to result_url(@result)
+  test "should update attempt" do
+    patch attempt_url(@attempt), params: { attempt: { note: @attempt.note, outcome: @attempt.outcome } }
+    assert_redirected_to attempt_url(@attempt)
   end
 
-  test "should destroy result" do
+  test "should destroy attempt" do
     assert_difference('Result.count', -1) do
-      delete result_url(@result)
+      delete attempt_url(@attempt)
     end
 
-    assert_redirected_to results_url
+    assert_redirected_to attempts_url
   end
 end
