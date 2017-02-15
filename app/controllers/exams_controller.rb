@@ -1,5 +1,6 @@
 class ExamsController < ApplicationController
   before_action :set_exam, only: [:show, :edit, :update, :destroy, :grade, :post_grades]
+  before_action :set_students, only: [:show, :grade]
 
   # GET /exams
   # GET /exams.json
@@ -63,7 +64,6 @@ class ExamsController < ApplicationController
 
   # GET /exams/1/grade/
   def grade
-    @students = Student.all
   end
 
   # POST /exams/1/post_grades/
@@ -100,6 +100,10 @@ class ExamsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_exam
       @exam = Exam.find(params[:id])
+    end
+
+    def set_students
+      @students = Student.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

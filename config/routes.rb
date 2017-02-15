@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'static_pages#home'
+  root 'static_pages#home', as: :home
+  get '/progress', to: 'static_pages#progress', as: :progress
   resources :assessments
   resources :exams do
     member do

@@ -11,12 +11,13 @@
   <body>
     <h1>sbg-rails</h1>
     <p>
-      <%= link_to "Home", :root %>
-      <%= link_to "Students", students_path %>
-      <%= link_to "Standards", standards_path %>
-      <%= link_to "Exams", exams_path %>
-      <%= link_to "Assessments", assessments_path %>
-      <%= link_to "Attempts", attempts_path %>
+      <%= link_to "Home", :home %>
+      <%= link_to "Progess Reports", :progress %>
+      <%= link_to "Students", :students %>
+      <%= link_to "Standards", :standards %>
+      <%= link_to "Exams", :exams %>
+      <%= link_to "Assessments", :assessments %>
+      <%= link_to "Attempts", :attempts %>
     </p>
     <hr>
     <%= yield %>

@@ -1,0 +1,48 @@
+<table>
+  <thead>
+    <tr>
+      <th>Exam</th>
+      <% Standard.all.each do |standard| %>
+        <th><%= standard.name %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% exams.each_with_index do |exam,i| %>
+      <tr>
+        <td><%= exam.name %></td>
+        <% Standard.all.each do |standard| %>
+          <% if assessment = exam.assessments.where(standard:standard).first %>
+            <td style="
+              text-align:center;
+              font-size:1.2em;
+              font-weight:bold;
+              <% if student.deciding_attempt(assessment).outcome_id == -2 %>
+                color:gray;
+              <% elsif student.deciding_attempt(assessment).outcome_id == -1 %>
+                color:red;
+              <% elsif student.deciding_attempt(assessment).outcome_id == 0 %>
+                color:blue;
+              <% else %>
+                color:green;
+              <% end %>
+            ">
+              <%= student.deciding_attempt(assessment).outcome %><br>
+              <%= select_tag "attempt[#{assessment.id}]", options_for_select(Attempt::OUTCOME_ARRAY), include_blank: true if editable %>
+            </td>
+          <% else %>
+            <td></td>
+          <% end %>
+        <% end %>
+      </tr>
+      <% if i % 5 == 4 %>
+        <tr style="color:gray;">
+          <td></td>
+          <% Standard.all.each do |standard| %>
+            <td style="text-align:center"><%= assessment.standard.name %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

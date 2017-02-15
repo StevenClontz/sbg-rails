@@ -23,3 +23,7 @@
 <%= link_to 'Grade', grade_student_path(@student) %> |
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>
+
+
+<h3>Progress Report</h3>
+<%= render 'progress', student: @student, exams: @exams, editable: false %>

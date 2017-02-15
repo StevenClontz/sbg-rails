@@ -1,0 +1,6 @@
+<% Student.all.each do |student| %>
+  <h3 style="page-break-before:always">
+    Progress Report for <%=student.name%>
+  </h3>
+  <%= render 'students/progress', student: student, exams: Exam.all, editable: false %>
+<% end %>
