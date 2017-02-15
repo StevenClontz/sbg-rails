@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
   resources :assessments
-  resources :exams
+  resources :exams do
+    member do
+      get :grade
+      post :post_grades
+    end
+  end
   resources :attempts
   resources :standards
   resources :students

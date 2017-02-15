@@ -1,5 +1,5 @@
 class ExamsController < ApplicationController
-  before_action :set_exam, only: [:show, :edit, :update, :destroy]
+  before_action :set_exam, only: [:show, :edit, :update, :destroy, :grade, :post_grades]
 
   # GET /exams
   # GET /exams.json
@@ -59,6 +59,41 @@ class ExamsController < ApplicationController
       format.html { redirect_to exams_url, notice: 'Exam was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # GET /exams/1/grade/
+  def grade
+    @students = Student.all
+  end
+
+  # POST /exams/1/post_grades/
+  def post_grades
+
+    params[:attempt].each do |student_id|
+      params[:attempt][student_id].each do |assessment_id|
+
+        if outcome_id = params[:attempt][student_id][assessment_id]
+
+          unless Attempt.create(
+            student_id: student_id,
+            assessment_id: assessment_id,
+            outcome_id: outcome_id
+          )
+            respond_to do |format|
+              format.html { render :grade, notice: 'There was an issue in saving grades.' }
+            end
+          end
+
+        end
+
+      end
+    end
+
+    respond_to do |format|
+        format.html { redirect_to grade_exam_path(@exam), notice: 'Grades were successfully posted.' }
+        format.json { render :show, status: :created, location: @exam }
+    end
+
   end
 
   private

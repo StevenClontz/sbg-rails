@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Grade <%= @exam.name %></h1>
+
+<%= form_tag(post_grades_exam_path) do %>
+  <table>
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <% @exam.assessments.each do |assessment| %>
+          <th><%= assessment.standard.name %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @students.each do |student| %>
+        <tr>
+          <td><%= student.name %></td>
+          <% @exam.assessments.each do |assessment| %>
+            <td style="text-align:center">
+              <%= student.deciding_attempt(assessment).outcome %><br>
+              <%= select_tag "attempt[#{student.id}][#{assessment.id}]", options_for_select(Attempt::OUTCOME_ARRAY), include_blank: true %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= submit_tag("Update") %>
+<% end %>
