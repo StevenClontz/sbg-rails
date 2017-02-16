@@ -65,3 +65,67 @@
     </tr>
   </tbody>
 </table>
+
+<table style="text-align:center">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Partially Mastered Cores (<%= Attempt::OUTCOME_LABELS[1] %>)</th>
+      <th>Mastered Cores (<%= Attempt::OUTCOME_LABELS[1]*2 %>)</th>
+      <th>Mastered Supplementals (<%= Attempt::OUTCOME_LABELS[1] %>)</th>
+      <th>Participation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Req. for A</th>
+      <td>16</td>
+      <td>13</td>
+      <td>13</td>
+      <td>80%</td>
+    </tr>
+    <tr>
+      <th>Req. for B</th>
+      <td>14</td>
+      <td>10</td>
+      <td>10</td>
+      <td>70%</td>
+    </tr>
+    <tr>
+      <th>Req. for C</th>
+      <td>12</td>
+      <td>8</td>
+      <td>8</td>
+      <td>60%</td>
+    </tr>
+    <tr>
+      <th>Req. for D</th>
+      <td>10</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <th>You have:</th>
+      <th>
+        <%= standards
+            .where(category:2).to_a
+            .count{|s|student.count_successful_attempts(s) == 1}
+        %>
+      </th>
+      <th>
+        <%= standards
+            .where(category:2).to_a
+            .count{|s|student.count_successful_attempts(s) == 2}
+        %>
+      </th>
+      <th>
+        <%= standards
+            .where(category:1).to_a
+            .count{|s|student.count_successful_attempts(s) == 1}
+        %>
+      </th>
+      <th>??%</th>
+    </tr>
+  </tbody>
+</table>
