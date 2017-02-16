@@ -110,19 +110,19 @@
       <th>
         <%= standards
             .where(category:2).to_a
-            .count{|s|student.count_successful_attempts(s) == 1}
+            .count{|s|student.count_successful_attempts(s) >= 1}
         %>
       </th>
       <th>
         <%= standards
             .where(category:2).to_a
-            .count{|s|student.count_successful_attempts(s) == 2}
+            .count{|s|student.count_successful_attempts(s) >= 2}
         %>
       </th>
       <th>
         <%= standards
             .where(category:1).to_a
-            .count{|s|student.count_successful_attempts(s) == 1}
+            .count{|s|student.count_successful_attempts(s) >= 1}
         %>
       </th>
       <th>??%</th>
