@@ -1,6 +1,12 @@
 <table style="text-align:center;">
   <thead>
     <tr>
+      <th></th>
+      <% exam.assessments.each do |assessment| %>
+        <th><%= assessment.success_count %></th>
+      <% end %>
+    </tr>
+    <tr>
       <th>Student Name</th>
       <% exam.assessments.each do |assessment| %>
         <th><%= assessment.standard.name %></th>
@@ -15,17 +21,17 @@
           <td style="
             font-size:1.2em;
             font-weight:bold;
-            <% if student.deciding_attempt(assessment).outcome_id == -2 %>
+            <% if student.decisive_attempt(assessment).outcome_id == -2 %>
               color:gray;
-            <% elsif student.deciding_attempt(assessment).outcome_id == -1 %>
+            <% elsif student.decisive_attempt(assessment).outcome_id == -1 %>
               color:red;
-            <% elsif student.deciding_attempt(assessment).outcome_id == 0 %>
+            <% elsif student.decisive_attempt(assessment).outcome_id == 0 %>
               color:blue;
             <% else %>
               color:green;
             <% end %>
           ">
-            <%= student.deciding_attempt(assessment).outcome %><br>
+            <%= student.decisive_attempt(assessment).outcome %><br>
             <%= select_tag "attempt[#{student.id}][#{assessment.id}]", options_for_select(Attempt::OUTCOME_ARRAY), include_blank: true if editable %>
           </td>
         <% end %>

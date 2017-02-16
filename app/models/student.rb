@@ -8,8 +8,10 @@ class Student < ApplicationRecord
     "#{last_name}, #{first_name}"
   end
 
-  def deciding_attempt assessment
-    if (attempts = Attempt.where student: self, assessment: assessment).length > 0
+  def decisive_attempt assessment
+    if (attempts =
+      Attempt.where student: self, assessment: assessment
+    ).length > 0
       attempts.last
     else
       Attempt.new student_id: id, outcome_id: -2
@@ -17,10 +19,8 @@ class Student < ApplicationRecord
   end
 
   def count_successful_attempts standard
-    count = 0
-    standard.assessments.each do |assessment|
-      count+=1 if deciding_attempt(assessment).outcome_id == 1
-    end
+    count = standard.assessments.map{|a|decisive_attempt(a)}
+                                .count{|a|a.outcome_id==1}
     [count,standard.category].min
   end
 end
