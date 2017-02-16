@@ -1,0 +1,42 @@
+<table style="text-align:center;">
+  <thead>
+    <tr>
+      <th>Student</th>
+      <% standards.each do |standard| %>
+        <th><%= standard.name %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% students.each_with_index do |student,i| %>
+      <tr>
+        <th><%= student.name %></th>
+        <% standards.each do |standard| %>
+          <td style="
+            font-size:1.2em;
+            <% if student.count_successful_attempts(standard) == 0 %>
+              color:red;
+            <% else %>
+              color:green;
+            <% end %>
+          ">
+            <% if student.count_successful_attempts(standard) == 0 %>
+              <%= Attempt::OUTCOME_LABELS[-1] %>
+            <% end %>
+            <% student.count_successful_attempts(standard).times do %><!--
+           --><%= Attempt::OUTCOME_LABELS[1] %><!--
+         --><% end %>
+          </td>
+        <% end %>
+      </tr>
+      <% if i % 5 == 4 %>
+        <tr style="color:gray;">
+          <td></td>
+          <% standards.each do |standard| %>
+            <td style="text-align:center"><%= standard.name %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

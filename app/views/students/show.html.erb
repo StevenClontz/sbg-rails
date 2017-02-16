@@ -26,4 +26,4 @@
 
 
 <h3>Progress Report</h3>
-<%= render 'progress', student: @student, exams: @exams, editable: false %>
+<%= render 'progress', student: @student, exams: @exams, standards: Standard.all_assessed, editable: false %>

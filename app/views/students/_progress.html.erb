@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th>Exam</th>
-      <% Standard.all.each do |standard| %>
+      <% standards.each do |standard| %>
         <th><%= standard.name %></th>
       <% end %>
     </tr>
@@ -11,7 +11,7 @@
     <% exams.each_with_index do |exam,i| %>
       <tr>
         <td><%= exam.name %></td>
-        <% Standard.all.each do |standard| %>
+        <% standards.each do |standard| %>
           <% if assessment = exam.assessments.where(standard:standard).first %>
             <td style="
               font-size:1.2em;
@@ -37,15 +37,15 @@
       <% if i % 5 == 4 %>
         <tr style="color:gray;">
           <td></td>
-          <% Standard.all.each do |standard| %>
-            <td style="text-align:center"><%= assessment.standard.name %></td>
+          <% standards.each do |standard| %>
+            <td style="text-align:center"><%= standard.name %></td>
           <% end %>
         </tr>
       <% end %>
     <% end %>
     <tr>
       <th>Total</th>
-      <% Standard.all.each do |standard| %>
+      <% standards.each do |standard| %>
         <td style="
           font-size:1.2em;
           <% if student.count_successful_attempts(standard) == 0 %>

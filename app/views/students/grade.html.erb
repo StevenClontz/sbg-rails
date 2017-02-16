@@ -3,7 +3,7 @@
 <h1>Grade <%= @student.name %></h1>
 
 <%= form_tag(post_grades_student_path) do %>
-  <%= render 'progress', student: @student, exams: @exams, editable: true %>
+  <%= render 'progress', student: @student, exams: @exams, standards: Standard.all_assessed, editable: true %>
   <%= submit_tag("Update") %>
 <% end %>
 
