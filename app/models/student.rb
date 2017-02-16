@@ -15,4 +15,12 @@ class Student < ApplicationRecord
       Attempt.new student_id: id, outcome_id: -2
     end
   end
+
+  def count_successful_attempts standard
+    count = 0
+    standard.assessments.each do |assessment|
+      count+=1 if deciding_attempt(assessment).outcome_id == 1
+    end
+    [count,standard.category].min
+  end
 end

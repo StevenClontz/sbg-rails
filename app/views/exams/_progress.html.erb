@@ -1,4 +1,4 @@
-<table>
+<table style="text-align:center;">
   <thead>
     <tr>
       <th>Student Name</th>
@@ -13,7 +13,6 @@
         <td><%= student.name %></td>
         <% exam.assessments.each do |assessment| %>
           <td style="
-            text-align:center;
             font-size:1.2em;
             font-weight:bold;
             <% if student.deciding_attempt(assessment).outcome_id == -2 %>

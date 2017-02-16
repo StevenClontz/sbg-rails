@@ -1,4 +1,4 @@
-<table>
+<table style="text-align:center;">
   <thead>
     <tr>
       <th>Exam</th>
@@ -14,7 +14,6 @@
         <% Standard.all.each do |standard| %>
           <% if assessment = exam.assessments.where(standard:standard).first %>
             <td style="
-              text-align:center;
               font-size:1.2em;
               font-weight:bold;
               <% if student.deciding_attempt(assessment).outcome_id == -2 %>
@@ -44,5 +43,25 @@
         </tr>
       <% end %>
     <% end %>
+    <tr>
+      <th>Total</th>
+      <% Standard.all.each do |standard| %>
+        <td style="
+          font-size:1.2em;
+          <% if student.count_successful_attempts(standard) == 0 %>
+            color:red;
+          <% else %>
+            color:green;
+          <% end %>
+        ">
+          <% if student.count_successful_attempts(standard) == 0 %>
+            <%= Attempt::OUTCOME_LABELS[-1] %>
+          <% end %>
+          <% student.count_successful_attempts(standard).times do %><!--
+         --><%= Attempt::OUTCOME_LABELS[1] %><!--
+       --><% end %>
+        </td>
+      <% end %>
+    </tr>
   </tbody>
 </table>
