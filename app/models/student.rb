@@ -23,4 +23,12 @@ class Student < ApplicationRecord
                                 .count{|a|a.outcome_id==1}
     [count,standard.category].min
   end
+
+  def participation_average
+    ((irq_grade||0)+(trq_grade||0)+(pes_grade||0)+2)/3
+  end
+
+  def participation_grade
+    participation_average+participation_adjustment
+  end
 end

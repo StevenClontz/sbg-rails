@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<%= link_to 'Grade', grade_student_path(@student) %> |
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Index', students_path %>
+
 <p>
   <strong>First name:</strong>
   <%= @student.first_name %>
@@ -19,10 +23,6 @@
   <strong>Email:</strong>
   <%= @student.email %>
 </p>
-
-<%= link_to 'Grade', grade_student_path(@student) %> |
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Index', students_path %>
 
 
 <h3>Progress Report</h3>

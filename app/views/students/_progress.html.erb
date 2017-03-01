@@ -66,6 +66,16 @@
   </tbody>
 </table>
 
+<p><strong>Participation:</strong></p>
+<ul>
+  <li>Individual Readiness Quiz: <%= student.irq_grade %>%</li>
+  <li>Team Readiness Quiz: <%= student.trq_grade %>%</li>
+  <li>Peer Evaluation Survey: <%= student.pes_grade %>%</li>
+  <li><em>Average: <%= student.participation_average %>%</em></li>
+  <li>Adjustment: <%= student.participation_adjustment %>%</li>
+  <li><strong>Grade: <%= student.participation_grade %>%</strong></li>
+</ul>
+
 <table style="text-align:center">
   <thead>
     <tr>
@@ -125,7 +135,7 @@
             .count{|s|student.count_successful_attempts(s) >= 1}
         %>
       </th>
-      <th>??%</th>
+      <th><%= student.participation_grade %>%</th>
     </tr>
   </tbody>
 </table>
