@@ -3,7 +3,7 @@
     <tr>
       <th>Exam</th>
       <% standards.each do |standard| %>
-        <th><%= standard.name %></th>
+        <th title="<%= standard.description %>"><%= standard.name %></th>
       <% end %>
     </tr>
   </thead>
