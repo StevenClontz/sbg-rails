@@ -31,4 +31,68 @@ class Student < ApplicationRecord
   def participation_grade
     participation_average+participation_adjustment
   end
+
+  def core_single_success_count
+    Standard
+        .where(category:2).to_a
+        .count{|s|count_successful_attempts(s) >= 1}
+  end
+
+  def core_double_success_count
+    Standard
+        .where(category:2).to_a
+        .count{|s|count_successful_attempts(s) >= 2}
+  end
+
+  def supplemental_single_success_count
+    Standard
+        .where(category:1).to_a
+        .count{|s|count_successful_attempts(s) >= 1}
+  end
+
+  def midsemester_grade
+    if    (core_single_success_count>=6) &&
+          (core_double_success_count>=4) &&
+          (supplemental_single_success_count>=5) &&
+          (participation_grade>=80)
+      "A"
+    elsif (core_single_success_count>=5) &&
+          (core_double_success_count>=3) &&
+          (supplemental_single_success_count>=4) &&
+          (participation_grade>=70)
+      "B"
+    elsif (core_single_success_count>=4) &&
+          (core_double_success_count>=2) &&
+          (supplemental_single_success_count>=3) &&
+          (participation_grade>=60)
+      "C"
+    elsif (core_single_success_count>=3)
+      "D"
+    else
+      "F"
+    end
+  end
+
+  def semester_grade
+    if    (core_single_success_count>=16) &&
+          (core_double_success_count>=13) &&
+          (supplemental_single_success_count>=13) &&
+          (participation_grade>=80)
+      "A"
+    elsif (core_single_success_count>=14) &&
+          (core_double_success_count>=10) &&
+          (supplemental_single_success_count>=10) &&
+          (participation_grade>=70)
+      "B"
+    elsif (core_single_success_count>=12) &&
+          (core_double_success_count>=8) &&
+          (supplemental_single_success_count>=8) &&
+          (participation_grade>=60)
+      "C"
+    elsif (core_single_success_count>=10)
+      "D"
+    else
+      "F"
+    end
+  end
 end

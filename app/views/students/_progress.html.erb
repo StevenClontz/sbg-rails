@@ -118,24 +118,26 @@
     <tr>
       <th>You have:</th>
       <th>
-        <%= standards
-            .where(category:2).to_a
-            .count{|s|student.count_successful_attempts(s) >= 1}
-        %>
+        <%= student.core_single_success_count %>
       </th>
       <th>
-        <%= standards
-            .where(category:2).to_a
-            .count{|s|student.count_successful_attempts(s) >= 2}
-        %>
+        <%= student.core_double_success_count %>
       </th>
       <th>
-        <%= standards
-            .where(category:1).to_a
-            .count{|s|student.count_successful_attempts(s) >= 1}
-        %>
+        <%= student.supplemental_single_success_count %>
       </th>
       <th><%= student.participation_grade %>%</th>
+    </tr>
+    <tr>
+      <th>Midsemster Grade:</th>
+      <th>
+        <%= student.midsemester_grade %>
+      </th>
+      <th></th>
+      <th>Semester Grade:</th>
+      <th>
+        <%= student.semester_grade %>
+      </th>
     </tr>
   </tbody>
 </table>

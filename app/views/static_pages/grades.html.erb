@@ -1,0 +1,13 @@
+<% Student.all.each do |student| %>
+  <h3 style="page-break-before:always">
+    Grade Report for <%=student.name%>
+  </h3>
+  <p>
+    <b>Midsemster Grade:</b>
+      <%= student.midsemester_grade %>
+  </p>
+  <p>
+    <b>Semester Grade:</b>
+      <%= student.semester_grade %>
+  </p>
+<% end %>
