@@ -1,24 +1,20 @@
-# README
+# sbg-rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A rails app for managing Standards-Based Grading. For now, it's for developers only. 
+Here are screenshots of version `e520599`.
 
-Things you may want to cover:
+![grading][grading-screen]
 
-* Ruby version
+![progress][progress-screen]
 
-* System dependencies
+[grading-screen]: https://raw.githubusercontent.com/StevenClontz/sbg-rails/master/screenshots/grading.png
 
-* Configuration
+[progress-screen]: https://raw.githubusercontent.com/StevenClontz/sbg-rails/master/screenshots/progress.png
 
-* Database creation
+# Installation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. clone the repo
+2. check you're running the correct versions of ruby/rails
+3. `bundle` install gems
+4. Block port 3000 requests from outside if working on an open network.
+4. `bin/rails s` to run the local server and `bin/rails c` to run the console
