@@ -66,7 +66,7 @@
   </tbody>
 </table>
 
-<p><strong>Participation:</strong></p>
+<!-- <p><strong>Participation:</strong></p>
 <ul>
   <li>Individual Readiness Quiz: <%= student.irq_grade %>%</li>
   <li>Team Readiness Quiz: <%= student.trq_grade %>%</li>
@@ -74,7 +74,29 @@
   <li><em>Average: <%= student.participation_average %>%</em></li>
   <li>Adjustment: <%= student.participation_adjustment %>%</li>
   <li><strong>Grade: <%= student.participation_grade %>%</strong></li>
-</ul>
+</ul> -->
+<table style="text-align:center">
+  <thead>
+    <tr>
+      <th>Ind Quiz</th>
+      <th>Team Quiz</th>
+      <th>Survey</th>
+      <th>Participation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= student.irq_grade %>%</td>
+      <td><%= student.trq_grade %>%</td>
+      <td><%= student.pes_grade %>%</td>
+      <td>
+        <%= student.participation_average %>%
+        +(<%= student.participation_adjustment %>%)
+        =<%= student.participation_grade %>%
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <table style="text-align:center">
   <thead>
