@@ -11,6 +11,11 @@
     </div>
   <% end %>
 
+  <div class="course">
+    <%= f.label :course %>
+    <%= f.collection_select(:course_id, Course.all, :id, :name) %>
+  </div>
+
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>

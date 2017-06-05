@@ -11,9 +11,9 @@
     </div>
   <% end %>
 
-  <div class="assessment">
-    <%= f.label :assessment %>
-    <%= f.collection_select(:assessment_id, Assessment.all, :id, :exam_standard) %>
+  <div class="standard">
+    <%= f.label :standard %>
+    <%= f.collection_select(:standard_id, Standard.all, :id, :name) %>
   </div>
 
   <div class="field">

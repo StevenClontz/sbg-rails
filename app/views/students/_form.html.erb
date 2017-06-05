@@ -11,6 +11,11 @@
     </div>
   <% end %>
 
+  <div class="course">
+    <%= f.label :course %>
+    <%= f.collection_select(:course_id, Course.all, :id, :name) %>
+  </div>
+
   <div class="field">
     <%= f.label :first_name %>
     <%= f.text_field :first_name %>
@@ -29,26 +34,6 @@
   <div class="field">
     <%= f.label :email %>
     <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :irq_grade %>
-    <%= f.number_field :irq_grade %>
-  </div>
-
-  <div class="field">
-    <%= f.label :trq_grade %>
-    <%= f.number_field :trq_grade %>
-  </div>
-
-  <div class="field">
-    <%= f.label :pes_grade %>
-    <%= f.number_field :pes_grade %>
-  </div>
-
-  <div class="field">
-    <%= f.label :participation_adjustment %>
-    <%= f.number_field :participation_adjustment %>
   </div>
 
   <div class="actions">
