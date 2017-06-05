@@ -10,32 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301182035) do
-
-  create_table "assessments", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "standard_id"
-    t.integer  "exam_id"
-    t.index ["exam_id"], name: "index_assessments_on_exam_id"
-    t.index ["standard_id"], name: "index_assessments_on_standard_id"
-  end
+ActiveRecord::Schema.define(version: 20170605184733) do
 
   create_table "attempts", force: :cascade do |t|
     t.integer  "outcome_id"
     t.string   "note"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.datetime "attempted_on"
-    t.integer  "assessment_id"
     t.integer  "student_id"
-    t.index ["assessment_id"], name: "index_attempts_on_assessment_id"
+    t.integer  "standard_id"
+    t.index ["standard_id"], name: "index_attempts_on_standard_id"
     t.index ["student_id"], name: "index_attempts_on_student_id"
   end
 
-  create_table "exams", force: :cascade do |t|
+  create_table "courses", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at",  null: false
@@ -47,7 +36,6 @@ ActiveRecord::Schema.define(version: 20170301182035) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "category"
   end
 
   create_table "students", force: :cascade do |t|
@@ -55,12 +43,8 @@ ActiveRecord::Schema.define(version: 20170301182035) do
     t.string   "last_name"
     t.string   "school_identifier"
     t.string   "email"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "irq_grade"
-    t.integer  "trq_grade"
-    t.integer  "pes_grade"
-    t.integer  "participation_adjustment"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
 end
