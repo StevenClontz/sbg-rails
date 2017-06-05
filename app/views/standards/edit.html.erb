@@ -2,5 +2,5 @@
 
 <%= render 'form', standard: @standard %>
 
-<%= link_to 'Show', @standard %> |
-<%= link_to 'Index', standards_path %>
+<%= link_to 'Show', course_standard_path(@standard.course,@standard) %> |
+<%= link_to 'Index', course_standards_path(@standard.course) %>

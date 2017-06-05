@@ -1,9 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Grade', grade_student_path(@student) %> |
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Index', students_path %>
-
 <p>
   <strong>First name:</strong>
   <%= @student.first_name %>
@@ -24,6 +20,5 @@
   <%= @student.email %>
 </p>
 
-
-<h3>Progress Report</h3>
-<%= render 'progress', student: @student, exams: @exams, standards: Standard.all_assessed, editable: false %>
+<%= link_to 'Edit', edit_course_student_path(@standard.course,@student) %> |
+<%= link_to 'Index', course_students_path(@standard.course) %>

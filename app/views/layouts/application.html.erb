@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SbgRails</title>
+    <title><% if @course %><%= @course.name %> | <% end %>SbgRails</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,12 +9,14 @@
   </head>
 
   <body>
-    <h1>sbg-rails</h1>
+    <h1><% if @course %><%= @course.name %> | <% end %>SbgRails</h1>
     <p>
       <%= link_to "Home", :home %>
       <%= link_to "Courses", :courses %>
-      <%= link_to "Students", :students %>
-      <%= link_to "Standards", :standards %>
+      <% if @course %>
+        <%= link_to "Students", course_students_path(@course) %>
+        <%= link_to "Standards", course_standards_path(@course) %>
+      <% end %>
     </p>
     <hr>
     <%= yield %>
