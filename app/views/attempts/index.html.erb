@@ -6,9 +6,8 @@
   <thead>
     <tr>
       <th>Student</th>
-      <th>Exam</th>
       <th>Standard</th>
-      <th>Outcome</th>
+      <th>Mark</th>
       <th>Note</th>
       <th colspan="3"></th>
     </tr>
@@ -18,13 +17,12 @@
     <% @attempts.each do |attempt| %>
       <tr>
         <td><%= attempt.student.name %></td>
-        <td><%= attempt.assessment.exam.name %></td>
-        <td><%= attempt.assessment.standard.name %></td>
-        <td><%= attempt.outcome %></td>
+        <td><%= attempt.standard.name %></td>
+        <td><%= attempt.mark %></td>
         <td><%= attempt.note %></td>
-        <td><%= link_to 'Show', attempt %></td>
-        <td><%= link_to 'Edit', edit_attempt_path(attempt) %></td>
-        <td><%= link_to 'Destroy', attempt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [attempt.course,attempt] %></td>
+        <td><%= link_to 'Edit', edit_course_attempt_path(@course,attempt) %></td>
+        <td><%= link_to 'Destroy', course_attempt_path(@course,attempt), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Attempt', new_attempt_path %>
+<%= link_to 'New Attempt', new_course_attempt_path(@course) %>

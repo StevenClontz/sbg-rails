@@ -1,10 +1,11 @@
 class AttemptsController < ApplicationController
   before_action :set_attempt, only: [:show, :edit, :update, :destroy]
+  before_action :set_course
 
   # GET /attempts
   # GET /attempts.json
   def index
-    @attempts = Attempt.all
+    @attempts = Attempt.joins(:student).where(students:{course:@course})
   end
 
   # GET /attempts/1
@@ -14,7 +15,7 @@ class AttemptsController < ApplicationController
 
   # GET /attempts/new
   def new
-    @attempt = Attempt.new
+    @attempt = Attempt.new(course:@course)
   end
 
   # GET /attempts/1/edit
@@ -28,7 +29,7 @@ class AttemptsController < ApplicationController
 
     respond_to do |format|
       if @attempt.save
-        format.html { redirect_to @attempt, notice: 'Attempt was successfully created.' }
+        format.html { redirect_to [@course, @attempt], notice: 'Attempt was successfully created.' }
         format.json { render :show, status: :created, location: @attempt }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class AttemptsController < ApplicationController
   def update
     respond_to do |format|
       if @attempt.update(attempt_params)
-        format.html { redirect_to @attempt, notice: 'Attempt was successfully updated.' }
+        format.html { redirect_to [@course, @attempt], notice: 'Attempt was successfully updated.' }
         format.json { render :show, status: :ok, location: @attempt }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class AttemptsController < ApplicationController
   def destroy
     @attempt.destroy
     respond_to do |format|
-      format.html { redirect_to attempts_url, notice: 'Attempt was successfully destroyed.' }
+      format.html { redirect_to course_attempts_url(@course), notice: 'Attempt was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,9 +67,12 @@ class AttemptsController < ApplicationController
     def set_attempt
       @attempt = Attempt.find(params[:id])
     end
+    def set_course
+      @course = Course.find(params[:course_id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attempt_params
-      params.require(:attempt).permit(:assessment_id, :student_id, :outcome_id, :note)
+      params.require(:attempt).permit(:standard_id, :student_id, :mark, :note)
     end
 end

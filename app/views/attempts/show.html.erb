@@ -1,8 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Outcome:</strong>
-  <%= @attempt.outcome %>
+  <strong>Student:</strong>
+  <%= @attempt.student.name %>
+</p>
+
+<p>
+  <strong>Standard:</strong>
+  <%= @attempt.standard.name %>
+</p>
+
+<p>
+  <strong>Mark:</strong>
+  <%= @attempt.mark %>
 </p>
 
 <p>
@@ -10,5 +20,5 @@
   <%= @attempt.note %>
 </p>
 
-<%= link_to 'Edit', edit_attempt_path(@attempt) %> |
-<%= link_to 'Index', attempts_path %>
+<%= link_to 'Edit', edit_course_attempt_path(@attempt.course,@attempt) %> |
+<%= link_to 'Index', course_attempts_path(@attempt.course) %>

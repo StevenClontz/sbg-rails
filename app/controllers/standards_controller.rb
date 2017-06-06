@@ -43,7 +43,7 @@ class StandardsController < ApplicationController
   def update
     respond_to do |format|
       if @standard.update(standard_params)
-        format.html { redirect_to course_standard_url(@course,@standard), notice: 'Standard was successfully updated.' }
+        format.html { redirect_to [@course, @standard], notice: 'Standard was successfully updated.' }
         format.json { render :show, status: :ok, location: @standard }
       else
         format.html { render :edit }
@@ -101,6 +101,6 @@ class StandardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def standard_params
-      params.require(:standard).permit(:name, :description, :category).merge(course:@course)
+      params.require(:standard).permit(:name, :description, :category).merge(course_id:@course.id)
     end
 end

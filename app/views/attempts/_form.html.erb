@@ -1,4 +1,4 @@
-<%= form_for(attempt) do |f| %>
+<%= form_for [attempt.course,attempt] do |f| %>
   <% if attempt.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(attempt.errors.count, "error") %> prohibited this attempt from being saved:</h2>
@@ -13,17 +13,17 @@
 
   <div class="standard">
     <%= f.label :standard %>
-    <%= f.collection_select(:standard_id, Standard.all, :id, :name) %>
+    <%= f.collection_select(:standard_id, Standard.where(course:attempt.course), :id, :name) %>
   </div>
 
   <div class="field">
     <%= f.label :student %>
-    <%= f.collection_select(:student_id, Student.all, :id, :name) %>
+    <%= f.collection_select(:student_id, Student.where(course:attempt.course), :id, :name) %>
   </div>
 
   <div class="field">
-    <%= f.label :outcome %>
-    <%= f.select :outcome_id, Attempt::OUTCOME_ARRAY %>
+    <%= f.label :mark %>
+    <%= f.select :mark, Attempt::MARK_ARRAY %>
   </div>
 
   <div class="field">

@@ -2,5 +2,5 @@
 
 <%= render 'form', attempt: @attempt %>
 
-<%= link_to 'Show', @attempt %> |
-<%= link_to 'Index', attempts_path %>
+<%= link_to 'Show', [@attempt.course, @attempt] %> |
+<%= link_to 'Index', course_attempts_path(@attempt.course) %>

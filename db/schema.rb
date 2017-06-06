@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170605220852) do
+ActiveRecord::Schema.define(version: 20170606222243) do
 
   create_table "attempts", force: :cascade do |t|
-    t.integer  "outcome_id"
     t.string   "note"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.datetime "attempted_on"
     t.integer  "student_id"
     t.integer  "standard_id"
+    t.string   "mark"
     t.index ["standard_id"], name: "index_attempts_on_standard_id"
     t.index ["student_id"], name: "index_attempts_on_student_id"
   end

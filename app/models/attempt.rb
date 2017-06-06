@@ -1,18 +1,21 @@
 class Attempt < ApplicationRecord
-  belongs_to :assessment
+  belongs_to :standard
   belongs_to :student
+  has_one :course, through: :student
 
-  OUTCOME_LABELS = {
-    -2 => "?",
-    -1 => "×",
-     0 => "★",
-     1 => "✓"
+  MARK_LABELS = {
+    "unknown" => "?",
+    "unsatisfactory" => "×",
+    "satisfactory" => "✓",
+    "provisional" => "★",
+    "provisional_satisfactory" => "★✓",
+    "provisional_unsatisfactory" => "★×"
   }
-  OUTCOME_ARRAY = OUTCOME_LABELS.invert.to_a
+  MARK_ARRAY = MARK_LABELS.invert.to_a
 
-  validates_inclusion_of :outcome_id, in: OUTCOME_LABELS.keys
+  validates_inclusion_of :mark, in: MARK_LABELS.values
 
-  def outcome
-    OUTCOME_LABELS[outcome_id]
+  def mark
+    MARK_LABELS[self[:mark]]
   end
 end
