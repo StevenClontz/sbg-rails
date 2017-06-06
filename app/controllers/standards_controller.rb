@@ -5,7 +5,7 @@ class StandardsController < ApplicationController
   # GET /standards
   # GET /standards.json
   def index
-    @standards = Standard.all
+    @standards = Standard.where(course:@course).order(name: :asc)
   end
 
   # GET /standards/1
