@@ -1,0 +1,1 @@
+json.partial! "standard_categories/standard_category", standard_category: @standard_category

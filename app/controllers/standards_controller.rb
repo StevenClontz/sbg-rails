@@ -5,7 +5,7 @@ class StandardsController < ApplicationController
   # GET /standards
   # GET /standards.json
   def index
-    @standards = Standard.where(course:@course).order(name: :asc)
+    @standards = Standard.joins(:standard_category).where(standard_categories:{course:@course}).order(name: :asc)
   end
 
   # GET /standards/1
@@ -15,7 +15,7 @@ class StandardsController < ApplicationController
 
   # GET /standards/new
   def new
-    @standard = Standard.new(course:@course)
+    @standard = Standard.new
   end
 
   # GET /standards/1/edit
@@ -101,6 +101,6 @@ class StandardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def standard_params
-      params.require(:standard).permit(:name, :description, :category).merge(course_id:@course.id)
+      params.require(:standard).permit(:name, :description, :standard_category_id)
     end
 end

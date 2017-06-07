@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170606222243) do
+ActiveRecord::Schema.define(version: 20170607182652) do
 
   create_table "attempts", force: :cascade do |t|
     t.string   "note"
@@ -31,13 +31,23 @@ ActiveRecord::Schema.define(version: 20170606222243) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "standard_categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "satsifactory_limit"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "course_id"
+    t.index ["course_id"], name: "index_standard_categories_on_course_id"
+  end
+
   create_table "standards", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "course_id"
-    t.index ["course_id"], name: "index_standards_on_course_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "standard_category_id"
+    t.index ["standard_category_id"], name: "index_standards_on_standard_category_id"
   end
 
   create_table "students", force: :cascade do |t|

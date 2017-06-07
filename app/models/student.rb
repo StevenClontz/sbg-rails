@@ -9,6 +9,6 @@ class Student < ApplicationRecord
   def count_satisfactories_for_standard standard
     sats = attempts.where(standard:standard,mark:"satisfactory").count
     prov_sats = attempts.where(standard:standard,mark:"provisional_satisfactory").count
-    [sats+prov_sats,2].min
+    [sats+prov_sats,standard.standard_category.satsifactory_limit].min
   end
 end

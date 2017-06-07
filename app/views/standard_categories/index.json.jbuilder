@@ -1,0 +1,1 @@
+json.array! @standard_categories, partial: 'standard_categories/standard_category', as: :standard_category

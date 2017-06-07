@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @standard_category.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @standard_category.description %>
+</p>
+
+<p>
+  <strong>Satsifactory limit:</strong>
+  <%= @standard_category.satsifactory_limit %>
+</p>
+
+<%= link_to 'Edit', edit_standard_category_path(@standard_category) %> |
+<%= link_to 'Back', standard_categories_path %>
