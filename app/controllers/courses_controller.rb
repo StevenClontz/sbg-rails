@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :progress]
 
   # GET /courses
   # GET /courses.json
@@ -59,6 +59,12 @@ class CoursesController < ApplicationController
       format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # GET /courses/1/progress
+  def progress
+    @students = Student.where(course:@course).order(last_name: :asc)
+    @standards = Standard.where(course:@course).order(name: :asc)
   end
 
   private

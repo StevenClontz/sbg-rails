@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= f.label :mark %>
-    <%= f.select :mark, Attempt::MARK_ARRAY %>
+    <%= f.select :mark, Attempt::MARK_ARRAY, selected: attempt[:mark] %>
   </div>
 
   <div class="field">

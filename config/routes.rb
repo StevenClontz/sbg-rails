@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   # get '/progress', to: 'static_pages#progress', as: :progress
   # get '/grades', to: 'static_pages#grades', as: :grades
   resources :courses do
+    member do
+      get :progress
+    end
 
     resources :standards
     resources :students do

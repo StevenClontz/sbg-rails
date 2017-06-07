@@ -3,7 +3,7 @@ class Attempt < ApplicationRecord
   belongs_to :student
   has_one :course, through: :student
 
-  MARK_LABELS = {
+  MARK_HASH = {
     "unknown" => "?",
     "unsatisfactory" => "×",
     "satisfactory" => "✓",
@@ -11,11 +11,11 @@ class Attempt < ApplicationRecord
     "provisional_satisfactory" => "★✓",
     "provisional_unsatisfactory" => "★×"
   }
-  MARK_ARRAY = MARK_LABELS.invert.to_a
+  MARK_ARRAY = MARK_HASH.invert.to_a
 
-  validates_inclusion_of :mark, in: MARK_LABELS.values
+  validates_inclusion_of :mark, in: MARK_HASH.values
 
   def mark
-    MARK_LABELS[self[:mark]]
+    MARK_HASH[self[:mark]]
   end
 end
