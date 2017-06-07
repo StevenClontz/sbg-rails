@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="standard">
+    <%= f.label :attempted_on %>
+    <%= f.date_field :attempted_on %>
+  </div>
+
+  <div class="standard">
     <%= f.label :standard %>
     <%= f.collection_select(:standard_id, Standard.where(course:attempt.course), :id, :name) %>
   </div>

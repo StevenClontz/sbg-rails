@@ -5,7 +5,7 @@ class AttemptsController < ApplicationController
   # GET /attempts
   # GET /attempts.json
   def index
-    @attempts = Attempt.joins(:student).where(students:{course:@course})
+    @attempts = Attempt.joins(:student,:standard).where(students:{course:@course}).order('students.last_name ASC').order('students.first_name ASC').order(:attempted_on).order('standards.name ASC')
   end
 
   # GET /attempts/1
@@ -73,6 +73,6 @@ class AttemptsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attempt_params
-      params.require(:attempt).permit(:standard_id, :student_id, :mark, :note)
+      params.require(:attempt).permit(:standard_id, :student_id, :mark, :note, :attempted_on)
     end
 end
