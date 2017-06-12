@@ -2,6 +2,10 @@ class Student < ApplicationRecord
   belongs_to :course
   has_many :attempts
 
+  default_scope do
+    order(last_name: :asc, first_name: :asc)
+  end
+
   def name
     "#{last_name}, #{first_name}"
   end
