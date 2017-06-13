@@ -26,4 +26,5 @@
 </p>
 
 <%= link_to 'Edit', edit_course_attempt_path(@attempt.course,@attempt) %> |
-<%= link_to 'Index', course_attempts_path(@attempt.course) %>
+<%= link_to 'Index', course_attempts_path(@attempt.course) %> |
+<%= link_to "Recent ★s", index_recent_provisionals_course_attempts_path(@course) %>

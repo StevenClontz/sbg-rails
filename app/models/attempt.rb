@@ -3,6 +3,8 @@ class Attempt < ApplicationRecord
   belongs_to :student
   has_one :course, through: :student
 
+  scope :recent_provisionals, -> { where("attempted_on > ?", Time.now-8.days).where(mark:"provisional") }
+
   MARK_HASH = {
     "unknown" => "?",
     "unsatisfactory" => "×",

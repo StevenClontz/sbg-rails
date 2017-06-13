@@ -13,14 +13,18 @@
     <p>
       <%= link_to "Home", :home %>
       <%= link_to "Courses", :courses %>
-      <% if @course %>
-        <%= link_to "Students", course_students_path(@course) %>
-        <%= link_to "Standard Categories", course_standard_categories_path(@course) %>
-        <%= link_to "Standards", course_standards_path(@course) %>
-        <%= link_to "Attempts", course_attempts_path(@course) %>
-        <%= link_to "Progress", progress_course_path(@course) %>
-      <% end %>
     </p>
+      <% if @course %>
+        <p>
+          <%= link_to "Students", course_students_path(@course) %>
+          <%= link_to "Standard Categories", course_standard_categories_path(@course) %>
+          <%= link_to "Standards", course_standards_path(@course) %>
+          <%= link_to "Attempts", course_attempts_path(@course) %>
+          <%= link_to "New Attempt", new_course_attempt_path(@course) %>
+          <%= link_to "Recent ★s", index_recent_provisionals_course_attempts_path(@course) %>
+          <%= link_to "Progress", progress_course_path(@course) %>
+        </p>
+      <% end %>
     <hr>
     <%= yield %>
   </body>

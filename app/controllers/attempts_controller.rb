@@ -5,8 +5,26 @@ class AttemptsController < ApplicationController
   # GET /attempts
   # GET /attempts.json
   def index
-    @attempts = Attempt.joins(:student,:standard).where(students:{course:@course}).order('students.last_name ASC').order('students.first_name ASC').order(:attempted_on).order('standards.name ASC')
+    @attempts =   Attempt
+      .joins(:student,:standard)
+      .where(students:{course:@course})
+      .order('students.last_name ASC')
+      .order('students.first_name ASC')
+      .order(:attempted_on)
+      .order('standards.name ASC')
   end
+
+  def index_recent_provisionals
+    @attempts = Attempt.recent_provisionals
+      .joins(:student,:standard)
+      .where(students:{course:@course})
+      .order(attempted_on: :desc)
+      .order('students.last_name ASC')
+      .order('students.first_name ASC')
+      .order('standards.name ASC')
+    render :index
+  end
+
 
   # GET /attempts/1
   # GET /attempts/1.json

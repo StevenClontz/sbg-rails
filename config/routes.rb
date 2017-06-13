@@ -17,7 +17,11 @@ Rails.application.routes.draw do
         post :post_grades
       end
     end
-    resources :attempts
+    resources :attempts do
+      collection do
+        get :index_recent_provisionals, layout: 'index'
+      end
+    end
 
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
