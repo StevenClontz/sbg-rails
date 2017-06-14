@@ -10,7 +10,12 @@ Rails.application.routes.draw do
     end
 
     resources :standard_categories
-    resources :standards
+    resources :standards do
+      member do
+        get :new_attempts
+        post :new_attempts, to: 'standards#create_attempts', as: :create_attempts
+      end
+    end
     resources :students do
       member do
         get :grade
