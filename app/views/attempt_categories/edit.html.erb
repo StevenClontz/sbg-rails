@@ -1,0 +1,6 @@
+<h1>Editing Attempt Category</h1>
+
+<%= render 'form', attempt_category: @attempt_category %>
+
+<%= link_to 'Show', [@attempt_category.course,@attempt_category] %> |
+<%= link_to 'Back', course_attempt_categories_path(@attempt_category.course) %>

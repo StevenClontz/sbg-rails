@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :standard_categories
   resources :courses
   root 'static_pages#home', as: :home
   # get '/progress', to: 'static_pages#progress', as: :progress
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
     end
 
     resources :standard_categories
+    resources :attempt_categories
     resources :standards do
       member do
         get :new_attempts

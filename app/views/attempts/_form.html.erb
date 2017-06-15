@@ -11,12 +11,17 @@
     </div>
   <% end %>
 
-  <div class="standard">
+  <div class="field">
+    <%= f.label :attempt_category %>
+    <%= f.collection_select(:attempt_category_id, AttemptCategory.where(course:attempt.course), :id, :name) %>
+  </div>
+
+  <div class="field">
     <%= f.label :attempted_on %>
     <%= f.date_field :attempted_on %>
   </div>
 
-  <div class="standard">
+  <div class="field">
     <%= f.label :standard %>
     <%= f.collection_select(:standard_id, Standard.joins(:standard_category).where(standard_categories:{course:attempt.course}), :id, :name) %>
   </div>
@@ -29,6 +34,11 @@
   <div class="field">
     <%= f.label :mark %>
     <%= f.select :mark, Attempt::MARK_ARRAY, selected: attempt[:mark] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :attempt_points_used %>
+    <%= f.number_field :attempt_points_used %>
   </div>
 
   <div class="field">

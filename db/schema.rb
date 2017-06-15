@@ -10,16 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607182652) do
+ActiveRecord::Schema.define(version: 20170615161728) do
+
+  create_table "attempt_categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "default_attempt_points"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "course_id"
+    t.index ["course_id"], name: "index_attempt_categories_on_course_id"
+  end
 
   create_table "attempts", force: :cascade do |t|
     t.string   "note"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.datetime "attempted_on"
     t.integer  "student_id"
     t.integer  "standard_id"
     t.string   "mark"
+    t.integer  "attempt_points_used"
+    t.integer  "attempt_category_id"
+    t.index ["attempt_category_id"], name: "index_attempts_on_attempt_category_id"
     t.index ["standard_id"], name: "index_attempts_on_standard_id"
     t.index ["student_id"], name: "index_attempts_on_student_id"
   end
@@ -27,8 +39,9 @@ ActiveRecord::Schema.define(version: 20170607182652) do
   create_table "courses", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.boolean  "uses_attempt_points", default: false
   end
 
   create_table "standard_categories", force: :cascade do |t|
@@ -55,9 +68,10 @@ ActiveRecord::Schema.define(version: 20170607182652) do
     t.string   "last_name"
     t.string   "school_identifier"
     t.string   "email"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "course_id"
+    t.integer  "attempt_points_earned"
     t.index ["course_id"], name: "index_students_on_course_id"
   end
 

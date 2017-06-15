@@ -1,0 +1,1 @@
+json.array! @attempt_categories, partial: 'attempt_categories/attempt_category', as: :attempt_category

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @attempt_category.name %>
+</p>
+
+<p>
+  <strong>Default attempt points:</strong>
+  <%= @attempt_category.default_attempt_points %>
+</p>
+
+<%= link_to 'Edit', edit_course_attempt_category_path(@attempt_category.course,@attempt_category) %> |
+<%= link_to 'Back', course_attempt_categories_path(@attempt_category.course) %>

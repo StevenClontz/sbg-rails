@@ -1,0 +1,27 @@
+<%= form_for [attempt_category.course,attempt_category] do |f| %>
+  <% if attempt_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(attempt_category.errors.count, "error") %> prohibited this attempt_category from being saved:</h2>
+
+      <ul>
+      <% attempt_category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :default_attempt_points %>
+    <%= f.number_field :default_attempt_points %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

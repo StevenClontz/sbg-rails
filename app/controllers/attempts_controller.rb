@@ -91,6 +91,6 @@ class AttemptsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attempt_params
-      params.require(:attempt).permit(:standard_id, :student_id, :mark, :note, :attempted_on)
+      params.require(:attempt).permit(:standard_id, :student_id, :mark, :note, :attempted_on, :attempt_category_id, :attempt_points_used)
     end
 end

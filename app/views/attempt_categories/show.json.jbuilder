@@ -1,0 +1,1 @@
+json.partial! "attempt_categories/attempt_category", attempt_category: @attempt_category
