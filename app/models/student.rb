@@ -23,7 +23,7 @@ class Student < ApplicationRecord
       }.length
     [
       satisfactories + provisional_satisfactories,
-      standard.satsifactory_limit
+      standard.satisfactory_limit
     ].min
   end
 end

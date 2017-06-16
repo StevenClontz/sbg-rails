@@ -3,7 +3,7 @@ class Standard < ApplicationRecord
   has_one :course, through: :standard_category
   has_many :attempts
 
-  def satsifactory_limit
-    standard_category.satsifactory_limit
+  def satisfactory_limit
+    standard_category.satisfactory_limit
   end
 end

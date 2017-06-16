@@ -70,6 +70,6 @@ class StandardCategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def standard_category_params
-      params.require(:standard_category).permit(:name, :description, :satsifactory_limit).merge(course:@course)
+      params.require(:standard_category).permit(:name, :description, :satisfactory_limit).merge(course:@course)
     end
 end

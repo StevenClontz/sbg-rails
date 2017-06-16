@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170616162738) do
+ActiveRecord::Schema.define(version: 20170616174623) do
 
   create_table "attempt_categories", force: :cascade do |t|
     t.string   "name"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20170616162738) do
   create_table "standard_categories", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "satsifactory_limit"
+    t.integer  "satisfactory_limit"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "course_id"

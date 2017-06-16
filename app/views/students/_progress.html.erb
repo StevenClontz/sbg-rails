@@ -11,7 +11,7 @@
       <tr style="border:1px solid black;">
         <% standard_slice.each do |standard| %>
           <td style="border:1px solid black;height:1em;">
-            <% standard.satsifactory_limit.times do |i| %>
+            <% standard.satisfactory_limit.times do |i| %>
               <% if student.count_satisfactories_for_standard(standard) > i %>
                 <%= Attempt::MARK_HASH["satisfactory"] %>
               <% else %>
