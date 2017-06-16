@@ -2,4 +2,4 @@
 
 <%= render 'form', standard_category: @standard_category %>
 
-<%= link_to 'Back', standard_categories_path %>
+<%= link_to 'Back', course_standard_categories_path(@standard_category.course) %>

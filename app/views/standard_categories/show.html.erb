@@ -15,5 +15,5 @@
   <%= @standard_category.satsifactory_limit %>
 </p>
 
-<%= link_to 'Edit', edit_standard_category_path(@standard_category) %> |
-<%= link_to 'Back', standard_categories_path %>
+<%= link_to 'Edit', edit_course_standard_category_path(@standard_category.course,@standard_category) %> |
+<%= link_to 'Back', course_standard_categories_path(@standard_category.course)%>

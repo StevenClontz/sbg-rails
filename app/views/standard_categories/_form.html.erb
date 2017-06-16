@@ -1,4 +1,4 @@
-<%= form_for(standard_category) do |f| %>
+<%= form_for [standard_category.course,standard_category] do |f| %>
   <% if standard_category.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(standard_category.errors.count, "error") %> prohibited this standard_category from being saved:</h2>

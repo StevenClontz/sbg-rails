@@ -129,9 +129,6 @@ class StandardsController < ApplicationController
     def set_standard
       @standard = Standard.find(params[:id])
     end
-    def set_course
-      @course = Course.find(params[:course_id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def standard_params

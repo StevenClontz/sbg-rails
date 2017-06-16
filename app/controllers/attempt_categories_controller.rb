@@ -67,9 +67,6 @@ class AttemptCategoriesController < ApplicationController
     def set_attempt_category
       @attempt_category = AttemptCategory.find(params[:id])
     end
-    def set_course
-      @course = Course.find(params[:course_id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attempt_category_params

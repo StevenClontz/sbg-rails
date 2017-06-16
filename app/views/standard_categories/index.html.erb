@@ -18,9 +18,9 @@
         <td><%= standard_category.name %></td>
         <td><%= standard_category.description %></td>
         <td><%= standard_category.satsifactory_limit %></td>
-        <td><%= link_to 'Show', standard_category %></td>
-        <td><%= link_to 'Edit', edit_standard_category_path(standard_category) %></td>
-        <td><%= link_to 'Destroy', standard_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [standard_category.course,standard_category] %></td>
+        <td><%= link_to 'Edit', edit_course_standard_category_path(standard_category.course,standard_category) %></td>
+        <td><%= link_to 'Destroy', [standard_category.course,standard_category], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Standard Category', new_standard_category_path %>
+<%= link_to 'New Standard Category', new_course_standard_category_path(@course) %>

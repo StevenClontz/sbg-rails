@@ -1,10 +1,11 @@
 class StandardCategoriesController < ApplicationController
+  before_action :set_course
   before_action :set_standard_category, only: [:show, :edit, :update, :destroy]
 
   # GET /standard_categories
   # GET /standard_categories.json
   def index
-    @standard_categories = StandardCategory.all
+    @standard_categories = StandardCategory.where course:@course
   end
 
   # GET /standard_categories/1
@@ -14,7 +15,7 @@ class StandardCategoriesController < ApplicationController
 
   # GET /standard_categories/new
   def new
-    @standard_category = StandardCategory.new
+    @standard_category = StandardCategory.new course:@course
   end
 
   # GET /standard_categories/1/edit
@@ -28,7 +29,7 @@ class StandardCategoriesController < ApplicationController
 
     respond_to do |format|
       if @standard_category.save
-        format.html { redirect_to @standard_category, notice: 'Standard category was successfully created.' }
+        format.html { redirect_to [@standard_category.course,@standard_category], notice: 'Standard category was successfully created.' }
         format.json { render :show, status: :created, location: @standard_category }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class StandardCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @standard_category.update(standard_category_params)
-        format.html { redirect_to @standard_category, notice: 'Standard category was successfully updated.' }
+        format.html { redirect_to [@standard_category.course,@standard_category], notice: 'Standard category was successfully updated.' }
         format.json { render :show, status: :ok, location: @standard_category }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class StandardCategoriesController < ApplicationController
   def destroy
     @standard_category.destroy
     respond_to do |format|
-      format.html { redirect_to standard_categories_url, notice: 'Standard category was successfully destroyed.' }
+      format.html { redirect_to course_standard_categories_url(@course), notice: 'Standard category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +70,6 @@ class StandardCategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def standard_category_params
-      params.require(:standard_category).permit(:name, :description, :satsifactory_limit)
+      params.require(:standard_category).permit(:name, :description, :satsifactory_limit).merge(course:@course)
     end
 end
