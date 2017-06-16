@@ -2,28 +2,5 @@
   <h3 style="page-break-before:always">
     Progress Report for <%=student.name%>
   </h3>
-  <%= render 'students/progress', student: student, standards: @standards, editable: false %>
-
-  <p>Needed for A: </p>
-  <ul>
-    <li>46/48 checkmarks</li>
-    <li>16/16 Core Standards with at least one checkmark</li>
-  </ul>
-
-  <p>Needed for B: </p>
-  <ul>
-    <li>38/48 checkmarks</li>
-    <li>14/16 Core Standards with at least one checkmark</li>
-  </ul>
-
-  <p>Needed for C: </p>
-  <ul>
-    <li>30/48 checkmarks</li>
-    <li>12/16 Core Standards with at least one checkmark</li>
-  </ul>
-
-  <p>Needed for D: </p>
-  <ul>
-    <li>24/48 checkmarks</li>
-  </ul>
+  <%= render 'students/progress', student: student, standard_categories: @course.standard_categories, grade_specifications: @course.grade_specifications, standards: @standards, editable: false %>
 <% end %>

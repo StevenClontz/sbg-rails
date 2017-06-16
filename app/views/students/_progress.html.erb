@@ -1,16 +1,20 @@
-<% standards.each_slice((standards.count+1)/2) do |standard_slice| %>
-<table style="text-align:center;border:1px solid black;">
-  <thead>
-    <tr style="border:1px solid black;">
-      <% standard_slice.each do |standard| %>
-        <th title="<%= standard.description %>" style="border:1px solid black;"><%= standard.name %></th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
+<% standard_categories.each do |standard_category| %>
+  <% standards
+    .select{|s|s.standard_category_id==standard_category.id}
+    .each_slice(16) do |standard_slice|
+  %>
+  <table style="text-align:center;border:1px solid black;">
+    <thead>
       <tr style="border:1px solid black;">
         <% standard_slice.each do |standard| %>
-          <td style="border:1px solid black;height:1em;">
+          <th title="<%= standard.description %>" style="border:1px solid black;"><%= standard.name %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border:1px solid black;">
+        <% standard_slice.each do |standard| %>
+          <td style="border:1px solid black;">
             <% standard.satisfactory_limit.times do |i| %>
               <% if student.count_satisfactories_for_standard(standard) > i %>
                 <%= Attempt::MARK_HASH["satisfactory"] %>
@@ -21,6 +25,60 @@
           </td>
         <% end %>
       </tr>
+    </tbody>
+  </table>
+  <% end %>
+<% end %>
+
+<table style="text-align:center;border:1px solid black;">
+  <thead>
+    <tr style="border:1px solid black;">
+        <th style="border:1px solid black;"></th>
+      <% GradeSpecification::GRADE_HASH.values.each do |grade| %>
+        <th style="border:1px solid black;">Required for <%= grade %>:</th>
+      <% end %>
+        <th style="border:1px solid black;">You've Earned:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% unless grade_specifications.select{|s|s[:requirement]=="satisfactories"}.empty? %>
+      <tr style="border:1px solid black;">
+        <td style="border:1px solid black;">
+          <%= GradeSpecification::REQUIREMENT_HASH["satisfactories"]%>
+        </td>
+        <% GradeSpecification::GRADE_HASH.values.each do |grade| %>
+          <td style="border:1px solid black;">
+            <% if spec = grade_specifications
+              .select{|s|s[:requirement]=="satisfactories"&&s[:grade]==grade}.first %>
+              <%= spec.amount %>
+            <% end %>
+          </td>
+        <% end %>
+        <td style="border:1px solid black;">
+          <%= student.count_satisfactories %>
+        </td>
+      </tr>
+    <% end %>
+    <% standard_categories.each do |standard_category| %>
+      <% unless grade_specifications.select{|s|s[:requirement]=="standards_with_one_satisfactory_in_category"&&s.standard_category_id==standard_category.id}.empty? %>
+        <tr style="border:1px solid black;">
+          <td style="border:1px solid black;">
+            <%= standard_category.name %> with at least one
+            <%= Attempt::MARK_HASH["satisfactory"]%>
+          </td>
+          <% GradeSpecification::GRADE_HASH.values.each do |grade| %>
+            <td style="border:1px solid black;">
+              <% if spec = grade_specifications
+                .select{|s|s[:requirement]=="standards_with_one_satisfactory_in_category"&&s.standard_category_id==standard_category.id&&s[:grade]==grade}.first %>
+                <%= spec.amount %>
+              <% end %>
+            </td>
+          <% end %>
+          <td style="border:1px solid black;">
+            <%= student.count_standards_with_one_satisfactory_in_category standard_category %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
   </tbody>
 </table>
-<% end %>

@@ -3,7 +3,7 @@ class GradeSpecification < ApplicationRecord
   belongs_to :course
 
   REQUIREMENT_HASH = {
-    "satsifactories" =>
+    "satisfactories" =>
       "Total #{Attempt::MARK_HASH['satisfactory']}s",
     "standards_with_one_satisfactory_in_category" =>
       "Standards in category with least one #{Attempt::MARK_HASH['satisfactory']}"

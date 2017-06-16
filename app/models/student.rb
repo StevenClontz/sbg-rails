@@ -26,4 +26,17 @@ class Student < ApplicationRecord
       standard.satisfactory_limit
     ].min
   end
+
+  def count_satisfactories
+    course.standards.inject(0) do |sum,standard|
+      sum + count_satisfactories_for_standard(standard)
+    end
+  end
+
+  def count_standards_with_one_satisfactory_in_category standard_category
+    attempts.select{|a|
+      a.standard.standard_category_id==standard_category.id &&
+      a[:mark]=="satisfactory"
+    }.map{|a|a.standard}.compact.count
+  end
 end
