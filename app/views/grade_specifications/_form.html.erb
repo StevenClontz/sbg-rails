@@ -1,0 +1,37 @@
+<%= form_for [grade_specification.course,grade_specification] do |f| %>
+  <% if grade_specification.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(grade_specification.errors.count, "error") %> prohibited this grade_specification from being saved:</h2>
+
+      <ul>
+      <% grade_specification.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :grade %>
+    <%= f.select :grade, GradeSpecification::GRADE_ARRAY, selected: grade_specification[:grade] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :requirement %>
+    <%= f.select :requirement, GradeSpecification::REQUIREMENT_ARRAY, selected: grade_specification[:requirement] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :standard_category %>
+    <%= f.collection_select(:standard_category_id, StandardCategory.where(course:grade_specification.course), :id, :name, prompt: true) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amount %>
+    <%= f.number_field :amount %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

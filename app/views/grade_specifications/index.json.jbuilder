@@ -1,0 +1,1 @@
+json.array! @grade_specifications, partial: 'grade_specifications/grade_specification', as: :grade_specification

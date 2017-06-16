@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  grade: MyString
+  requirement: MyString
+  amount: 1
+  standard_category: one
+
+two:
+  grade: MyString
+  requirement: MyString
+  amount: 1
+  standard_category: two

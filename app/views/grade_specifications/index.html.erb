@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Grade Specifications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Grade</th>
+      <th>Requirement</th>
+      <th>Amount</th>
+      <th>Standard category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @grade_specifications.each do |grade_specification| %>
+      <tr>
+        <td><%= grade_specification.grade %></td>
+        <td><%= grade_specification.requirement %></td>
+        <td><%= grade_specification.amount %></td>
+        <td><%= grade_specification.standard_category.name if grade_specification.standard_category %></td>
+        <td><%= link_to 'Show', [grade_specification.course,grade_specification] %></td>
+        <td><%= link_to 'Edit', edit_course_grade_specification_path(grade_specification.course,grade_specification) %></td>
+        <td><%= link_to 'Destroy', [grade_specification.course,grade_specification], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Grade Specification', new_course_grade_specification_path(@course) %>

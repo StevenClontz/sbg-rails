@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Grade:</strong>
+  <%= @grade_specification.grade %>
+</p>
+
+<p>
+  <strong>Requirement:</strong>
+  <%= @grade_specification.requirement %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @grade_specification.amount %>
+</p>
+
+<p>
+  <strong>Standard category:</strong>
+  <%= @grade_specification.standard_category %>
+</p>
+
+<%= link_to 'Edit', edit_course_grade_specification_path(@grade_specification.course,@grade_specification) %> |
+<%= link_to 'Back', course_grade_specifications_path(@course) %>

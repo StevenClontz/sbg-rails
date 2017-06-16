@@ -16,6 +16,7 @@
     </p>
       <% if @course %>
         <p>
+          <%= link_to "Grade Specifications", course_grade_specifications_path(@course) %>
           <%= link_to "Students", course_students_path(@course) %>
           <%= link_to "Standard Categories", course_standard_categories_path(@course) %>
           <%= link_to "Standards", course_standards_path(@course) %>

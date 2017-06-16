@@ -1,0 +1,6 @@
+<h1>Editing Grade Specification</h1>
+
+<%= render 'form', grade_specification: @grade_specification %>
+
+<%= link_to 'Show', [@grade_specification.course,@grade_specification] %> |
+<%= link_to 'Back', course_grade_specifications_path(@course) %>
