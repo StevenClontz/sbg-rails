@@ -63,8 +63,14 @@ class CoursesController < ApplicationController
 
   # GET /courses/1/progress
   def progress
-    @students = Student.where(course:@course).order(last_name: :asc)
-    @standards = Standard.joins(:standard_category).where(standard_categories:{course:@course}).order(name: :asc)
+    @students = Student
+      .includes(:attempts)
+      .where(course:@course)
+      .order(last_name: :asc)
+    @standards = Standard
+      .includes(:standard_category,:course)
+      .where(standard_categories:{course:@course})
+      .order(name: :asc)
   end
 
   private

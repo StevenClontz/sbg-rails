@@ -7,7 +7,7 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -16,9 +16,10 @@
       <tr>
         <td><%= standard.name %></td>
         <td><%= standard.description %></td>
-        <td><%= link_to 'Show', course_standard_path(@course,standard) %></td>
-        <td><%= link_to 'Edit', edit_course_standard_path(@course,standard) %></td>
-        <td><%= link_to 'Destroy', course_standard_path(@course,standard), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', course_standard_path(standard.course,standard) %></td>
+        <td><%= link_to 'Edit', edit_course_standard_path(standard.course,standard) %></td>
+        <td><%= link_to 'Destroy', course_standard_path(standard.course,standard), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'New Attempts', new_attempts_course_standard_path(standard.course,standard) %></td>
       </tr>
     <% end %>
   </tbody>
