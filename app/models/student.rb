@@ -35,8 +35,14 @@ class Student < ApplicationRecord
 
   def count_standards_with_one_satisfactory_in_category standard_category
     attempts.select{|a|
-      a.standard.standard_category_id==standard_category.id &&
-      a[:mark]=="satisfactory"
-    }.map{|a|a.standard}.compact.count
+      a.standard.standard_category_id==standard_category.id
+    }.select{|a|
+      a[:mark]=="satisfactory" || a[:mark]=="provisional_satisfactory"
+    }.map{|a|a.standard}.uniq.count
+  end
+
+  def attempt_points_used
+    return 0 if attempts.empty?
+    attempts.map{|a|a.attempt_points_used || 0}.reduce(:+)
   end
 end
