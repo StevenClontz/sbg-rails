@@ -1,6 +1,12 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # RESTRICTING ACCESS TO THE DEVELOPMENT ENVIRONMENT
+  config.middleware.insert_before(::Rack::Runtime, "::Rack::Auth::Basic", "Development") do |username, password|
+    lines = File.readlines 'local/password.txt'
+    username == lines[0].strip && password == lines[1].strip
+  end
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
