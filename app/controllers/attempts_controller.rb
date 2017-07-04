@@ -31,9 +31,12 @@ class AttemptsController < ApplicationController
   def show
   end
 
+  # # GET /attempts/new
+  # def new
+  #   @attempt = Attempt.new(course:@course)
+  # end
   # GET /attempts/new
   def new
-    @attempt = Attempt.new(course:@course)
   end
 
   # GET /attempts/1/edit
@@ -53,6 +56,33 @@ class AttemptsController < ApplicationController
         format.html { render :new }
         format.json { render json: @attempt.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # POST /attempts/create_many
+  def create_many
+    attempt_defaults = params.require(:attempt_defaults).permit(
+      :standard_id, :student_id, :mark, :note, :attempted_on,
+      :attempt_category_id, :attempt_points_used
+    )
+    attempts = params.permit(attempts: [
+      :standard_id, :student_id, :mark, :note, :attempted_on,
+      :attempt_category_id, :attempt_points_used
+    ])[:attempts].reject{|a|a[:mark].empty?}
+    merged_attempts = attempts.map do |attempt|
+      attempt.to_h.merge(attempt_defaults.to_h) do |key, value, default_value|
+        unless value.empty?
+          value
+        else
+          default_value
+        end
+      end.merge(course:@course)
+    end
+    Attempt.create!(merged_attempts)
+    respond_to do |format|
+      format.html {
+        redirect_to new_course_attempt_path(@course), notice: 'New attempts were successfully created.'
+      }
     end
   end
 

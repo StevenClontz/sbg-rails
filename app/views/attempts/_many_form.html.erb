@@ -1,0 +1,109 @@
+<%= form_tag(create_many_course_attempts_path(course)) do |f| %>
+
+  <legend>Set Defaults</legend>
+
+  <div class="field">
+    <%= label_tag :attempt_category %>
+    <%=
+      select_tag "attempt_defaults[attempt_category_id]",
+      options_for_select(course.attempt_categories.collect{|ac|[ac.name,ac.id]}),
+      include_blank: true
+    %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :attempted_on %>
+    <%= date_field_tag "attempt_defaults[attempted_on]" %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :standard %>
+    <%=
+      select_tag "attempt_defaults[standard_id]",
+      options_for_select(course.standards.collect{|s|[s.name,s.id]}),
+      include_blank: true
+    %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :student %>
+    <%=
+      select_tag "attempt_defaults[student_id]",
+      options_for_select(course.students.collect{|s|[s.name,s.id]}),
+      include_blank: true
+    %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :attempt_points_used %>
+    <%= number_field_tag "attempt_defaults[attempt_points_used]" %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :note %>
+    <%= text_field_tag "attempt_defaults[note]" %>
+  </div>
+
+  <legend>Attempts</legend>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Mark</th>
+        <th>Attempt Category</th>
+        <th>Attempted On</th>
+        <th>Standard</th>
+        <th>Student</th>
+        <th>Attempt Points Used</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% 30.times do %>
+        <tr>
+          <td>
+            <%=
+              select_tag "attempts[][mark]",
+              options_for_select(Attempt::MARK_ARRAY),
+              include_blank: true
+            %>
+          </td>
+          <td>
+            <%=
+              select_tag "attempts[][attempt_category_id]",
+              options_for_select(course.attempt_categories.collect{|ac|[ac.name,ac.id]}),
+              include_blank: true
+            %>
+          </td>
+          <td>
+            <%= date_field_tag "attempts[][attempted_on]" %>
+          </td>
+          <td>
+            <%=
+              select_tag "attempts[][standard_id]",
+              options_for_select(course.standards.collect{|s|[s.name,s.id]}),
+              include_blank: true
+            %>
+          </td>
+          <td>
+            <%=
+              select_tag "attempts[][student_id]",
+              options_for_select(course.students.collect{|s|[s.name,s.id]}),
+              include_blank: true
+            %>
+          </td>
+          <td>
+            <%= number_field_tag "attempts[][attempt_points_used]" %>
+          </td>
+          <td>
+            <%= text_field_tag "attempts[][note]" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <%= submit_tag("Create Attempts") %>
+  </div>
+<% end %>

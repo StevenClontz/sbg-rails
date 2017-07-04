@@ -3,6 +3,7 @@ class Course < ApplicationRecord
   has_many :standards, through: :standard_categories
   has_many :standard_categories
   has_many :grade_specifications
+  has_many :attempt_categories
 
   def maximum_satisfactory_attempts
     standard_categories.inject(0) do |sum,standard_category|

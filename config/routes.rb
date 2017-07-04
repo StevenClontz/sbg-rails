@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :attempts do
       collection do
         get :index_recent_provisionals, layout: 'index'
+        post :create_many
       end
     end
 
