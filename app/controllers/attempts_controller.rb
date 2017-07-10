@@ -8,16 +8,16 @@ class AttemptsController < ApplicationController
     @attempts = Attempt
       .includes(:standard,:attempt_category,:student,:course)
       .where(students:{course:@course})
+      .order(attempted_on: :desc)
       .order('students.last_name ASC')
       .order('students.first_name ASC')
-      .order(:attempted_on)
       .order('standards.name ASC')
   end
 
   def index_recent_provisionals
-    @attempts = Attempt.recent_provisionals
+    @attempts = Attempt
       .includes(:standard,:attempt_category,:student,:course)
-      .where(students:{course:@course})
+      .where(mark:"provisional",students:{course:@course})
       .order(attempted_on: :desc)
       .order('students.last_name ASC')
       .order('students.first_name ASC')

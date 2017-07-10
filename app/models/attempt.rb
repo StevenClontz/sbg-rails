@@ -6,8 +6,6 @@ class Attempt < ApplicationRecord
 
   before_create :set_attempt_points_used_to_default
 
-  scope :recent_provisionals, -> { where("attempted_on > ?", Time.now-8.days).where(mark:"provisional") }
-
   MARK_HASH = {
     "unknown" => "?",
     "unsatisfactory" => "×",
