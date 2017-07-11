@@ -7,6 +7,7 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
+      <th>Success Index</th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= standard.name %></td>
         <td><%= standard.description %></td>
+        <td><%= standard.success_index.round(2) %></td>
         <td><%= link_to 'Show', course_standard_path(standard.course,standard) %></td>
         <td><%= link_to 'Edit', edit_course_standard_path(standard.course,standard) %></td>
         <td><%= link_to 'Destroy', course_standard_path(standard.course,standard), method: :delete, data: { confirm: 'Are you sure?' } %></td>
