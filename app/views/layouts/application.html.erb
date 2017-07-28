@@ -9,12 +9,12 @@
   </head>
 
   <body>
-    <h1><% if @course %><%= @course.name %> | <% end %>SbgRails</h1>
+    <h1><% if @course && @course.name %><%= @course.name %> | <% end %>SbgRails</h1>
     <p>
       <%= link_to "Home", :home %>
       <%= link_to "Courses", :courses %>
     </p>
-      <% if @course %>
+      <% if @course && @course.id %>
         <p>
           <%= link_to "Grade Specifications", course_grade_specifications_path(@course) %>
           <%= link_to "Students", course_students_path(@course) %>
