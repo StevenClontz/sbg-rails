@@ -11,12 +11,7 @@ Rails.application.routes.draw do
     resources :standard_categories
     resources :attempt_categories
     resources :students
-    resources :standards do
-      member do
-        get :new_attempts
-        post :new_attempts, to: 'standards#create_attempts', as: :create_attempts
-      end
-    end
+    resources :standards
     resources :attempts do
       collection do
         get :index_recent_provisionals, layout: 'index'

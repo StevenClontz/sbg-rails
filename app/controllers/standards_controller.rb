@@ -15,11 +15,7 @@ class StandardsController < ApplicationController
 
   # GET /standards/new
   def new
-    @standard = Standard.new
-  end
-
-  # GET /standards/1/new_attempts
-  def new_attempts
+    @standard = Standard.new course: @course
   end
 
   # GET /standards/1/edit
@@ -39,36 +35,6 @@ class StandardsController < ApplicationController
         format.html { render :new }
         format.json { render json: @standard.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # POST /standards/1/new_attempts
-  def create_attempts
-    attempts_params = params.require(:attempts)
-    attempted_on = attempts_params[:attempted_on]
-    attempt_category_id = attempts_params[:attempt_category_id]
-    attempts_params[:marks].each do |student_id|
-      mark = attempts_params[:marks][student_id]
-      if mark != ""
-        note = attempts_params[:notes][student_id]
-        attempt_points_used = attempts_params[:attempt_points_useds][student_id]
-        unless Attempt.create(
-          standard:@standard,
-          student_id:student_id,
-          attempted_on:attempted_on,
-          attempt_category_id:attempt_category_id,
-          attempt_points_used:attempt_points_used,
-          mark:mark,
-          note:note
-        ).errors
-          respond_to do |format|
-            format.html { render course_standard_path(@standard.course,@standard), notice: 'There was an issue in creating these attempts.' }
-          end
-        end
-      end
-    end
-    respond_to do |format|
-        format.html { redirect_to course_standard_path(@standard.course,@standard), notice: 'New attempts were successfully created.' }
     end
   end
 

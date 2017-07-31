@@ -5,23 +5,24 @@
 <table>
   <thead>
     <tr>
+      <th>Category</th>
       <th>Name</th>
       <th>Description</th>
       <th>Success Index</th>
-      <th colspan="4"></th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @standards.each do |standard| %>
       <tr>
+        <td><%= standard.standard_category.name %></td>
         <td><%= standard.name %></td>
         <td><%= standard.description %></td>
         <td><%= standard.success_index.round(2) %></td>
         <td><%= link_to 'Show', course_standard_path(standard.course,standard) %></td>
         <td><%= link_to 'Edit', edit_course_standard_path(standard.course,standard) %></td>
         <td><%= link_to 'Destroy', course_standard_path(standard.course,standard), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'New Attempts', new_attempts_course_standard_path(standard.course,standard) %></td>
       </tr>
     <% end %>
   </tbody>

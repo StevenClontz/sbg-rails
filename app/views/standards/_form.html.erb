@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :standard_category %>
+    <%= f.collection_select(:standard_category_id, StandardCategory.where(course:standard.course), :id, :name) %>
+  </div>
+
+  <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
