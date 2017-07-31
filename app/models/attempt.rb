@@ -8,10 +8,11 @@ class Attempt < ApplicationRecord
 
   MARK_HASH = {
     "unsatisfactory" => "×",
+    "incomplete" => "!",
     "provisional" => "★",
-    "satisfactory" => "✓",
     "provisional_unsatisfactory" => "★×",
     "provisional_satisfactory" => "★✓",
+    "satisfactory" => "✓",
     "unknown" => "?"
   }
   MARK_ARRAY = MARK_HASH.invert.to_a
@@ -20,6 +21,10 @@ class Attempt < ApplicationRecord
 
   def mark
     MARK_HASH[self[:mark]]
+  end
+
+  def counts_as_satisfactory?
+    ["provisional_satisfactory","satisfactory"].include?(self[:mark])
   end
 
   private

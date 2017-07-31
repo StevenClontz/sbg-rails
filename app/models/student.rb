@@ -14,15 +14,10 @@ class Student < ApplicationRecord
     satisfactories = attempts
       .select{|a|
         a.standard_id==standard.id &&
-        a[:mark]=="satisfactory"
-      }.length
-    provisional_satisfactories = attempts
-      .select{|a|
-        a.standard_id==standard.id &&
-        a[:mark]=="provisional_satisfactory"
+        a.counts_as_satisfactory?
       }.length
     [
-      satisfactories + provisional_satisfactories,
+      satisfactories,
       standard.satisfactory_limit
     ].min
   end
@@ -37,7 +32,7 @@ class Student < ApplicationRecord
     attempts.select{|a|
       a.standard.standard_category_id==standard_category.id
     }.select{|a|
-      a[:mark]=="satisfactory" || a[:mark]=="provisional_satisfactory"
+      a.counts_as_satisfactory?
     }.map{|a|a.standard}.uniq.count
   end
 
