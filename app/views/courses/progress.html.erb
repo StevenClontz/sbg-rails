@@ -2,5 +2,14 @@
   <h3 style="page-break-before:always">
     Progress Report for <%=student.name%> &lt;<%=student.email%>&gt;
   </h3>
-  <%= render 'students/progress', student: student, standard_categories: @course.standard_categories, grade_specifications: @course.grade_specifications, standards: @standards, editable: false %>
+  <%= render 'students/progress', student: student, standard_categories: @course.standard_categories, grade_specifications: @course.grade_specifications, standards: @standards %>
+  <ul>
+    <% student.attempts.each do |attempt| %>
+      <li>
+        <%= attempt.attempted_on.strftime("%F") if attempt.attempted_on %>
+        <%= attempt.standard.name %>
+        <%= attempt.mark %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>
