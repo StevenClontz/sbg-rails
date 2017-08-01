@@ -7,12 +7,12 @@ class Attempt < ApplicationRecord
   before_create :set_attempt_points_used_to_default
 
   MARK_HASH = {
-    "unsatisfactory" => "×",
-    "incomplete" => "!",
-    "provisional" => "★",
-    "provisional_unsatisfactory" => "★×",
-    "provisional_satisfactory" => "★✓",
-    "satisfactory" => "✓",
+    "unsatisfactory" => "✘",
+    "incomplete" => "⚠",
+    "provisional" => "✱",
+    "provisional_unsatisfactory" => "✱✘",
+    "provisional_satisfactory" => "✱✔",
+    "satisfactory" => "✔",
     "unknown" => "?"
   }
   MARK_ARRAY = MARK_HASH.invert.to_a
