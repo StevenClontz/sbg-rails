@@ -7,6 +7,7 @@
     <% student.attempts.each do |attempt| %>
       <li>
         <%= attempt.attempted_on.strftime("%F") if attempt.attempted_on %>
+        <%= attempt.attempt_category.name %>
         <%= attempt.standard.name %>
         <%= attempt.mark %>
       </li>
