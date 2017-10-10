@@ -5,10 +5,5 @@
   <%= @section.name %>
 </p>
 
-<p>
-  <strong>Course:</strong>
-  <%= @section.course %>
-</p>
-
-<%= link_to 'Edit', edit_section_path(@section) %> |
-<%= link_to 'Back', sections_path %>
+<%= link_to 'Edit', edit_course_section_path(@section.course,@section) %> |
+<%= link_to 'Back', course_sections_path(@section.course)%>

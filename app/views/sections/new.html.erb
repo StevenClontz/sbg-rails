@@ -2,4 +2,4 @@
 
 <%= render 'form', section: @section %>
 
-<%= link_to 'Back', sections_path %>
+<%= link_to 'Back', course_sections_path(@section.course) %>
