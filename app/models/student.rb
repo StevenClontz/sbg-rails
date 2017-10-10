@@ -4,11 +4,15 @@ class Student < ApplicationRecord
   has_many :attempts
 
   default_scope do
-    order(last_name: :asc, first_name: :asc)
+    order(section_id: :asc, last_name: :asc, first_name: :asc)
   end
 
   def name
-    "#{last_name}, #{first_name}"
+    name = "#{last_name}, #{first_name}"
+    if section
+      name << " (#{section.name})"
+    end
+    return name
   end
 
   def count_satisfactories_for_standard standard
