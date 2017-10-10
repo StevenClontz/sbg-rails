@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
   belongs_to :course
+  belongs_to :section
   has_many :attempts
 
   default_scope do

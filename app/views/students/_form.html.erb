@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :section %>
+    <%= f.collection_select(:section_id, Section.where(course:student.course), :id, :name, prompt: true) %>
+  </div>
+
+  <div class="field">
     <%= f.label :first_name %>
     <%= f.text_field :first_name %>
   </div>

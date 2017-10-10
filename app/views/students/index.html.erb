@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Section</th>
       <th>School identifier</th>
       <th>Email</th>
       <th>Attempt points used/earned</th>
@@ -17,6 +18,7 @@
     <% @students.each do |student| %>
       <tr>
         <td><%= student.name %></td>
+        <td><%= student.section.name if student.section %></td>
         <td><%= student.school_identifier %></td>
         <td><%= student.email %></td>
         <td>

@@ -101,6 +101,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :school_identifier, :email, :attempt_points_earned).merge(course_id:@course.id)
+      params.require(:student).permit(:first_name, :last_name, :school_identifier, :email, :section_id, :attempt_points_earned).merge(course_id:@course.id)
     end
 end
