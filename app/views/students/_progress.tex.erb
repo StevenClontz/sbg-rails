@@ -1,0 +1,50 @@
+<% standard_categories.each_with_index do |standard_category,category_index| %>
+  <% standards
+    .select{|s|s.standard_category_id==standard_category.id}
+    .each_slice(16).with_index do |standard_slice,slice_index|
+  %>
+  <% unless slice_index == 0 && category_index == 0 %>\hfill<% end %>
+  \begin{tabular}[t]{|<%standard_slice.length.times do %>c|<%end%>}\hline
+    <% standard_slice.each_with_index do |standard,index| %>
+      <% unless index==0 %>&<% end %>
+      \textbf{<%= standard.name %>}
+    <% end %>
+  \\\hline
+    <% standard_slice.each_with_index do |standard,index| %>
+      <% unless index==0 %>&<% end %>
+        <% standard.satisfactory_limit.times do |i| %>
+          <% if student.count_satisfactories_for_standard(standard) > i %>
+            <%= Attempt::MARK_HASH["satisfactory"] %>
+          <% else %>
+            \(\square\)
+          <% end %>
+        <% end %>
+    <% end %>
+  \\\hline
+  \end{tabular}
+  <% end %>
+<% end %>
+
+\vspace{1em}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}\hline
+  &
+  <% GradeSpecification::GRADE_HASH.values.each do |grade| %>
+    \textbf{Req. for <%= grade %>:}&
+  <% end %>
+  \textbf{You've Earned}
+      <% unless grade_specifications.select{|s|s[:requirement]=="satisfactories"}.empty? %>
+        \\\hline
+        <%= GradeSpecification::REQUIREMENT_HASH["satisfactories"]%> &
+          <% GradeSpecification::GRADE_HASH.values.each do |grade| %>
+              <% if spec = grade_specifications
+                .select{|s|s[:requirement]=="satisfactories"&&s[:grade]==grade}.first %>
+                <%= spec.amount %>&
+              <% end %>
+          <% end %>
+          <%= student.count_satisfactories %>
+        <% end %>
+  \\\hline
+\end{tabular}
+\end{center}

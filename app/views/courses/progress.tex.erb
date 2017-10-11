@@ -4,6 +4,7 @@
 \usepackage[margin=1in]{geometry}
 
 \usepackage{amssymb,multicol,newunicodechar}
+\usepackage{booktabs}
 
 \newunicodechar{✘}{\(\times\)}
 \newunicodechar{⚠}{{\fontencoding{U}\fontfamily{futs}\selectfont\char 66\relax}}
@@ -18,55 +19,13 @@
 <% @students.each do |student| %>
 \section*{Progress Report for <%=student.name%>}
 
-Generated on <%= Time.now.inspect %>
-
-\begin{center}
-\begin{tabular}{|c|c|c|}\hline
-  \textbf{E1} & \textbf{E2} & \textbf{E3} \\\hline
-  \(\checkmark\)\(\square\) & \(\square\)\(\square\) & \(\checkmark\)\(\checkmark\) \\\hline
-\end{tabular}\hspace{3em}
-\begin{tabular}{|c|c|c|}\hline
-  \textbf{E1} & \textbf{E2} & \textbf{E3} \\\hline
-  \(\checkmark\)\(\square\) & \(\square\)\(\square\) & \(\checkmark\)\(\checkmark\) \\\hline
-\end{tabular}\hspace{3em}
-\begin{tabular}{|c|c|c|}\hline
-  \textbf{E1} & \textbf{E2} & \textbf{E3} \\\hline
-  \(\checkmark\)\(\square\) & \(\square\)\(\square\) & \(\checkmark\)\(\checkmark\) \\\hline
-\end{tabular}\hspace{3em}
-\begin{tabular}{|c|c|c|}\hline
-  \textbf{E1} & \textbf{E2} & \textbf{E3} \\\hline
-  \(\checkmark\)\(\square\) & \(\square\)\(\square\) & \(\checkmark\)\(\checkmark\) \\\hline
-\end{tabular}\hspace{3em}
-\begin{tabular}{|c|c|c|}\hline
-  \textbf{E1} & \textbf{E2} & \textbf{E3} \\\hline
-  \(\checkmark\)\(\square\) & \(\square\)\(\square\) & \(\checkmark\)\(\checkmark\) \\\hline
-\end{tabular}\hspace{3em}
-\begin{tabular}{|c|c|c|}\hline
-  \textbf{E1} & \textbf{E2} & \textbf{E3} \\\hline
-  \(\checkmark\)\(\square\) & \(\square\)\(\square\) & \(\checkmark\)\(\checkmark\) \\\hline
-\end{tabular}\hspace{3em}
-\begin{tabular}{|c|c|c|}\hline
-  \textbf{E1} & \textbf{E2} & \textbf{E3} \\\hline
-  \(\checkmark\)\(\square\) & \(\square\)\(\square\) & \(\checkmark\)\(\checkmark\) \\\hline
-\end{tabular}\hspace{3em}
+For <%= @course.name %>. Generated on <%= Time.now.inspect %>
 
 \vspace{1em}
 
-\begin{tabular}{|c|c|c|c|c|c|}\hline
-  &
-  \textbf{Req. for A} &
-  \textbf{Req. for B} &
-  \textbf{Req. for C} &
-  \textbf{Req. for D} &
-  \textbf{You've Earned} \\\hline
-  Total \(\checkmark\)s &
-  45 &
-  40 &
-  35 &
-  25 &
-  11 \\\hline
-\end{tabular}
-\end{center}
+<%= render 'students/progress.tex', student: student, standard_categories: @course.standard_categories, grade_specifications: @course.grade_specifications, standards: @standards %>
+
+
 
 \subsection*{Attempt History}
 
