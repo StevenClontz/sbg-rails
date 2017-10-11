@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{amssymb,multicol,newunicodechar}
+
+\newunicodechar{✘}{\(\times\)}
+\newunicodechar{⚠}{{\fontencoding{U}\fontfamily{futs}\selectfont\char 66\relax}}
+\newunicodechar{✔}{\(\checkmark\)}
+\newunicodechar{✱}{\(\ast\)}
+
+\parindent=0pt
+\pagenumbering{gobble}
+
+\begin{document}
+
+<% @students.each do |student| %>
+\section*{Progress Report for <%=student.name%>}
+
+Generated on <%= Time.now.inspect %>
+
+\begin{center}
+\begin{tabular}{|c|c|c|}\hline
+  \textbf{E1} & \textbf{E2} & \textbf{E3} \\\hline
+  \(\checkmark\)\(\square\) & \(\square\)\(\square\) & \(\checkmark\)\(\checkmark\) \\\hline
+\end{tabular}\hspace{3em}
+\begin{tabular}{|c|c|c|}\hline
+  \textbf{E1} & \textbf{E2} & \textbf{E3} \\\hline
+  \(\checkmark\)\(\square\) & \(\square\)\(\square\) & \(\checkmark\)\(\checkmark\) \\\hline
+\end{tabular}\hspace{3em}
+\begin{tabular}{|c|c|c|}\hline
+  \textbf{E1} & \textbf{E2} & \textbf{E3} \\\hline
+  \(\checkmark\)\(\square\) & \(\square\)\(\square\) & \(\checkmark\)\(\checkmark\) \\\hline
+\end{tabular}\hspace{3em}
+\begin{tabular}{|c|c|c|}\hline
+  \textbf{E1} & \textbf{E2} & \textbf{E3} \\\hline
+  \(\checkmark\)\(\square\) & \(\square\)\(\square\) & \(\checkmark\)\(\checkmark\) \\\hline
+\end{tabular}\hspace{3em}
+\begin{tabular}{|c|c|c|}\hline
+  \textbf{E1} & \textbf{E2} & \textbf{E3} \\\hline
+  \(\checkmark\)\(\square\) & \(\square\)\(\square\) & \(\checkmark\)\(\checkmark\) \\\hline
+\end{tabular}\hspace{3em}
+\begin{tabular}{|c|c|c|}\hline
+  \textbf{E1} & \textbf{E2} & \textbf{E3} \\\hline
+  \(\checkmark\)\(\square\) & \(\square\)\(\square\) & \(\checkmark\)\(\checkmark\) \\\hline
+\end{tabular}\hspace{3em}
+\begin{tabular}{|c|c|c|}\hline
+  \textbf{E1} & \textbf{E2} & \textbf{E3} \\\hline
+  \(\checkmark\)\(\square\) & \(\square\)\(\square\) & \(\checkmark\)\(\checkmark\) \\\hline
+\end{tabular}\hspace{3em}
+
+\vspace{1em}
+
+\begin{tabular}{|c|c|c|c|c|c|}\hline
+  &
+  \textbf{Req. for A} &
+  \textbf{Req. for B} &
+  \textbf{Req. for C} &
+  \textbf{Req. for D} &
+  \textbf{You've Earned} \\\hline
+  Total \(\checkmark\)s &
+  45 &
+  40 &
+  35 &
+  25 &
+  11 \\\hline
+\end{tabular}
+\end{center}
+
+\subsection*{Attempt History}
+
+\begin{multicols}{3}
+\begin{itemize}
+  <% if student.attempts.length > 0 %>
+    <% student.attempts.each do |attempt| %>
+      \item
+        <%= attempt.attempted_on.strftime("%F") if attempt.attempted_on %>
+        <%= attempt.attempt_category.name %>
+        <%= attempt.standard.name %>
+        <%= attempt.mark %>
+    <% end %>
+  <% else %>
+    \item No attempts recorded.
+  <% end %>
+\end{itemize}
+\end{multicols}
+
+\newpage
+
+<% end %>
+
+\end{document}

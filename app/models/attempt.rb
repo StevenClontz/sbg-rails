@@ -23,6 +23,10 @@ class Attempt < ApplicationRecord
     MARK_HASH[self[:mark]]
   end
 
+  def mark_tex
+    MARK_TEX[self[:mark]]
+  end
+
   def counts_as_satisfactory?
     ["provisional_satisfactory","satisfactory"].include?(self[:mark])
   end

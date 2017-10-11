@@ -71,6 +71,10 @@ class CoursesController < ApplicationController
       .includes(:standard_category,:course)
       .where(standard_categories:{course:@course})
       .order(name: :asc)
+    respond_to do |format|
+      format.html
+      format.tex
+    end
   end
 
   private
