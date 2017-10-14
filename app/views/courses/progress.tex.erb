@@ -29,20 +29,17 @@ For <%= @course.name %>. Generated on <%= Time.now.inspect %>
 
 \subsection*{Attempt History}
 
-\begin{multicols}{3}
-\begin{itemize}
+\begin{multicols}{4}\scriptsize
   <% if student.attempts.length > 0 %>
     <% student.attempts.each do |attempt| %>
-      \item
         <%= attempt.attempted_on.strftime("%F") if attempt.attempted_on %>
         <%= attempt.attempt_category.name %>
         <%= attempt.standard.name %>
-        <%= attempt.mark %>
+        <%= attempt.mark %>\newline
     <% end %>
   <% else %>
-    \item No attempts recorded.
+    No attempts recorded.
   <% end %>
-\end{itemize}
 \end{multicols}
 
 \newpage

@@ -15,6 +15,7 @@
       <% if @course && @course.id %>
         | <%= link_to "New Attempts", new_course_attempt_path(@course) %>
         | <%= link_to "Progress", progress_course_path(@course) %>
+          <%= link_to "(.tex)", progress_course_path(@course, format: :tex) %>
       <% end %>
     </p>
       <% if @course && @course.id %>
