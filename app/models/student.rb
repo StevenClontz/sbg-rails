@@ -34,7 +34,7 @@ class Student < ApplicationRecord
   end
 
   def count_dates_in_attempt_category attempt_category
-    attempts.select{|a|a.attempt_category==attempt_category}.map{|a|a.attempted_on.to_date}.uniq.count
+    attempts.select{|a|a.attempt_category_id==attempt_category.id}.map{|a|a.attempted_on.to_date}.uniq.count
   end
 
 
