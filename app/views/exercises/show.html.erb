@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Standard:</strong>
+  <%= @exercise.standard.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @exercise.description %>
+</p>
+
+<p>
+  <strong>Solution:</strong>
+  <%= @exercise.solution %>
+</p>
+
+<%= link_to 'Edit', edit_course_exercise_path(@exercise.course,@exercise) %> |
+<%= link_to 'Index', course_exercises_path(@exercise.course) %>

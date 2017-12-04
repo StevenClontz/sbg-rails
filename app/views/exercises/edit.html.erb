@@ -1,0 +1,6 @@
+<h1>Editing Exercise</h1>
+
+<%= render 'form', exercise: @exercise %>
+
+<%= link_to 'Show', [@exercise.course, @exercise] %> |
+<%= link_to 'Index', course_exercises_path(@exercise.course) %>

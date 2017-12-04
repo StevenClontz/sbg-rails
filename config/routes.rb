@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
 
     resources :sections
+    resources :exercises
     resources :grade_specifications
     resources :standard_categories
     resources :attempt_categories
