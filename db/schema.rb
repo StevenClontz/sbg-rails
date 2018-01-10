@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171204225649) do
+ActiveRecord::Schema.define(version: 20180110165308) do
+
+  create_table "assessments", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "course_id"
+    t.index [nil, nil], name: "index_assessments_on_assessment_id_and_standard_id"
+  end
 
   create_table "attempt_categories", force: :cascade do |t|
     t.string   "name"
@@ -42,6 +50,14 @@ ActiveRecord::Schema.define(version: 20171204225649) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.boolean  "uses_attempt_points", default: false
+  end
+
+  create_table "covered_standards", force: :cascade do |t|
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "assessment_id"
+    t.integer  "standard_id"
+    t.index ["assessment_id", "standard_id"], name: "index_covered_standards_on_assessment_id_and_standard_id"
   end
 
   create_table "exercises", force: :cascade do |t|

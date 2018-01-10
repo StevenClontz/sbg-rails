@@ -1,0 +1,6 @@
+<h1>Editing Assessment</h1>
+
+<%= render 'form', assessment: @assessment %>
+
+<%= link_to 'Show', [@assessment.course, @assessment] %> |
+<%= link_to 'Index', course_assessments_path(@assessment.course) %>

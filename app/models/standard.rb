@@ -2,6 +2,8 @@ class Standard < ApplicationRecord
   belongs_to :standard_category
   has_one :course, through: :standard_category
   has_many :attempts
+  has_many :covered_standards, dependent: :destroy
+  has_many :assessments, through: :covered_standards
 
   default_scope do
     order(:standard_category_id, :name)

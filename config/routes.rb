@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
     resources :sections
     resources :exercises
+    resources :assessments
     resources :grade_specifications
     resources :standard_categories
     resources :attempt_categories

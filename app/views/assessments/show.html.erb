@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @assessment.name %>
+</p>
+
+<%= link_to 'Edit', edit_course_assessment_path(@assessment.course,@assessment) %> |
+<%= link_to 'Index', course_assessments_path(@assessment.course) %>

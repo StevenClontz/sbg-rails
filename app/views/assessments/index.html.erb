@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Assessments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @assessments.each do |assessment| %>
+      <tr>
+        <td><%= assessment.name %></td>
+        <td><%= link_to 'Show', course_assessment_path(assessment.course,assessment) %></td>
+        <td><%= link_to 'Edit', edit_course_assessment_path(assessment.course,assessment) %></td>
+        <td><%= link_to 'Destroy', course_assessment_path(assessment.course,assessment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Assessment', new_course_assessment_path(@course) %>
