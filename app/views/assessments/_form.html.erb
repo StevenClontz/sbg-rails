@@ -16,6 +16,12 @@
     <%= f.text_field :name %>
   </div>
 
+
+  <div class="field">
+    <%= f.label :covered_standards %>
+    <%= f.collection_check_boxes :standard_ids, assessment.course.standards, :id, :name, include_hidden: false %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

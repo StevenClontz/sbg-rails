@@ -5,5 +5,14 @@
   <%= @assessment.name %>
 </p>
 
+<p>
+  <strong>Covered Standards:</strong>
+  <ul>
+    <% @assessment.standards.each do |standard| %>
+      <li><%= standard.name %></li>
+    <% end %>
+  </ul>
+</p>
+
 <%= link_to 'Edit', edit_course_assessment_path(@assessment.course,@assessment) %> |
 <%= link_to 'Index', course_assessments_path(@assessment.course) %>
