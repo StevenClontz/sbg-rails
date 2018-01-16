@@ -8,8 +8,15 @@
 <p>
   <strong>Covered Standards:</strong>
   <ul>
-    <% @assessment.standards.each do |standard| %>
-      <li><%= standard.name %></li>
+    <% @assessment.covered_standards.each do |covered_standard| %>
+      <li>
+        <%= covered_standard.standard.name %>
+        <ul>
+          <% covered_standard.exercises.each do |exercise| %>
+            <li><%= exercise.id %></li>
+          <% end %>
+        </ul>
+      </li>
     <% end %>
   </ul>
 </p>

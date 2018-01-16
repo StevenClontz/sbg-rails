@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180110165308) do
+ActiveRecord::Schema.define(version: 20180116210235) do
 
   create_table "assessments", force: :cascade do |t|
     t.string   "name"
@@ -58,6 +58,14 @@ ActiveRecord::Schema.define(version: 20180110165308) do
     t.integer  "assessment_id"
     t.integer  "standard_id"
     t.index ["assessment_id", "standard_id"], name: "index_covered_standards_on_assessment_id_and_standard_id"
+  end
+
+  create_table "exercise_versions", force: :cascade do |t|
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "covered_standard_id"
+    t.integer  "exercise_id"
+    t.index ["covered_standard_id", "exercise_id"], name: "index_exercise_versions_on_covered_standard_id_and_exercise_id"
   end
 
   create_table "exercises", force: :cascade do |t|
