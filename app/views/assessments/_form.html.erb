@@ -19,7 +19,7 @@
 
   <div class="field">
     <%= f.label :covered_standards %>
-    <%= f.collection_check_boxes :standard_ids, assessment.course.standards, :id, :name, include_hidden: false %>
+    <%= f.collection_select :standard_ids, assessment.course.standards, :id, :name, {include_hidden: false}, {multiple: true} %>
   </div>
 
   <div class="actions">

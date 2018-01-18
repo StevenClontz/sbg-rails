@@ -1,5 +1,13 @@
 <h1>New Assessment</h1>
 
+<p>
+  <%= link_to "Exercises", course_exercises_path(@assessment.course) %>
+  will be automatically assigned to each student for each
+  covered standard. Make sure you have created enough exercises
+  for your chosen standards before creating this assessment, as new
+  exercises cannot be added later.
+</p>
+
 <%= render 'form', assessment: @assessment %>
 
 <%= link_to 'Index', course_assessments_path(@assessment.course) %>

@@ -1,0 +1,34 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{amssymb,multicol,newunicodechar}
+\usepackage{booktabs}
+
+\newunicodechar{✘}{\(\times\)}
+\newunicodechar{⚠}{{\fontencoding{U}\fontfamily{futs}\selectfont\char 66\relax}}
+\newunicodechar{✔}{\(\checkmark\)}
+\newunicodechar{✱}{\(\ast\)}
+
+\parindent=0pt
+\pagenumbering{gobble}
+
+\begin{document}
+
+<% @students.each do |student| %>
+\section*{Progress Report for <%=student.name%>}
+
+For <%= @course.name %>. Generated on <%= Time.now.inspect %>
+
+\vspace{1em}
+
+<% @exercise_versions.select{|e| e.students.include? student}.each do |e| %>
+  <%= e.covered_standard.name %>: <%= e.exercise_id %> <%= e.exercise.description %>
+<% end %>
+
+\newpage
+
+<% end %>
+
+\end{document}

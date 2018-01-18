@@ -9,7 +9,11 @@ Rails.application.routes.draw do
 
     resources :sections
     resources :exercises
-    resources :assessments
+    resources :assessments do
+      member do
+        get :print
+      end
+    end
     resources :grade_specifications
     resources :standard_categories
     resources :attempt_categories
