@@ -2,6 +2,8 @@ class Student < ApplicationRecord
   belongs_to :course
   belongs_to :section
   has_many :attempts
+  has_many :version_assignments, dependent: :destroy
+  has_many :exercise_versions, through: :version_assignments
 
   default_scope do
     order(section_id: :asc, last_name: :asc, first_name: :asc)

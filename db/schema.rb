@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180116210235) do
+ActiveRecord::Schema.define(version: 20180118213002) do
 
   create_table "assessments", force: :cascade do |t|
     t.string   "name"
@@ -128,6 +128,14 @@ ActiveRecord::Schema.define(version: 20180116210235) do
     t.integer  "section_id"
     t.index ["course_id"], name: "index_students_on_course_id"
     t.index ["section_id"], name: "index_students_on_section_id"
+  end
+
+  create_table "version_assignments", force: :cascade do |t|
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "exercise_version_id"
+    t.integer  "student_id"
+    t.index ["exercise_version_id", "student_id"], name: "index__version_assignment__exercise_version__student"
   end
 
 end
