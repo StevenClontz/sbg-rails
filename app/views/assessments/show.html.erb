@@ -13,7 +13,9 @@
         <%= covered_standard.standard.name %>
         <ul>
           <% covered_standard.exercises.each do |exercise| %>
-            <li><%= exercise.id %></li>
+            <li>
+              <%= link_to "Exercise #{exercise.id}", [@course, exercise] %>
+            </li>
           <% end %>
         </ul>
       </li>
