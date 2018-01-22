@@ -35,11 +35,6 @@
   </div>
 
   <div class="field">
-    <%= label_tag :attempt_points_used %>
-    <%= number_field_tag "attempt_defaults[attempt_points_used]" %>
-  </div>
-
-  <div class="field">
     <%= label_tag :note %>
     <%= text_field_tag "attempt_defaults[note]" %>
   </div>
@@ -58,7 +53,6 @@
         <th>Attempted On</th>
         <th>Standard</th>
         <th>Student</th>
-        <th>Attempt Points Used</th>
         <th>Note</th>
       </tr>
     </thead>
@@ -95,9 +89,6 @@
               options_for_select(course.students_by_name.collect{|s|[s.name,s.id]}),
               include_blank: true
             %>
-          </td>
-          <td>
-            <%= number_field_tag "attempts[][attempt_points_used]" %>
           </td>
           <td>
             <%= text_field_tag "attempts[][note]" %>

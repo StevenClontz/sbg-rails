@@ -25,10 +25,5 @@
   <%= @student.email %>
 </p>
 
-<p>
-  <strong>Attempt points earned:</strong>
-  <%= @student.attempt_points_earned %>
-</p>
-
 <%= link_to 'Edit', edit_course_student_path(@student.course,@student) %> |
 <%= link_to 'Index', course_students_path(@student.course) %>

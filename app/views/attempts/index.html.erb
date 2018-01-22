@@ -10,7 +10,6 @@
       <th>Mark</th>
       <th>Attempt Category</th>
       <th>Attempted On</th>
-      <th>Attempt Points Used</th>
       <th>Note</th>
       <th colspan="3"></th>
     </tr>
@@ -24,7 +23,6 @@
         <td><%= attempt.mark %></td>
         <td><%= attempt.attempt_category.name %></td>
         <td><%= attempt.attempted_on.strftime("%F") if attempt.attempted_on %></td>
-        <td><%= attempt.attempt_points_used %></td>
         <td><%= attempt.note %></td>
         <td><%= link_to 'Show', [attempt.course,attempt] %></td>
         <td><%= link_to 'Edit', edit_course_attempt_path(@course,attempt) %></td>
