@@ -82,11 +82,3 @@
     <% end %>
   </tbody>
 </table>
-
-<% if student.course.uses_attempt_points? %>
-  <p>
-    Attempt Points Used/Earned:
-    <%= student.attempt_points_used %> /
-    <%= student.attempt_points_earned %>
-  </p>
-<% end %>
