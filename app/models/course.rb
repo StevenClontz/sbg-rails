@@ -12,4 +12,8 @@ class Course < ApplicationRecord
       standard_category.satisfactory_limit
     end
   end
+
+  def students_by_name
+    students.reorder(:last_name,:first_name)
+  end
 end

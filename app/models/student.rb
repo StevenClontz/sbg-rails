@@ -6,7 +6,8 @@ class Student < ApplicationRecord
   has_many :exercise_versions, through: :version_assignments
 
   default_scope do
-    order(section_id: :asc, last_name: :asc, first_name: :asc)
+    includes(:section)
+    .order(section_id: :asc, last_name: :asc, first_name: :asc)
   end
 
   def name

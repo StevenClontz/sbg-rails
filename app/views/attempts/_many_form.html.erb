@@ -29,7 +29,7 @@
     <%= label_tag :student %>
     <%=
       select_tag "attempt_defaults[student_id]",
-      options_for_select(course.students.collect{|s|[s.name,s.id]}),
+      options_for_select(course.students_by_name.collect{|s|[s.name,s.id]}),
       include_blank: true
     %>
   </div>
@@ -92,7 +92,7 @@
           <td>
             <%=
               select_tag "attempts[][student_id]",
-              options_for_select(course.students.collect{|s|[s.name,s.id]}),
+              options_for_select(course.students_by_name.collect{|s|[s.name,s.id]}),
               include_blank: true
             %>
           </td>
