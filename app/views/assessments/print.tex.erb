@@ -10,11 +10,11 @@
 
 \usepackage{pgfplots}
 
-\newcommand{\headerText}{
+\newcommand{\footerText}{
   <%= @course.name %>
 }
 
-\newcommand{\footerText}{}
+\newcommand{\headerText}{}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -24,13 +24,24 @@
 \cfoot{\footnotesize\footerText}
 
 
+\newcommand{\exercise}[2]{
+  \textbf{#1:} #2
+
+}
+
+%Use this for each exercise on a separate sheet.
+%\renewcommand{\exercise}[2]{
+%  \textbf{#1:} #2
+%  \newpage
+%}
+
+
 
 
 \begin{document}
 
 <% @students.each do |student| %>
-\section*{<%= @assessment.name %> -- <%=student.name%>}
-\renewcommand{\footerText}{<%= @assessment.name %> -- <%=student.name%>}
+\renewcommand{\headerText}{<%= @assessment.name %> -- <%=student.name%>}
 
 <% student_exercise_versions = @exercise_versions.select{|e| e.students.include? student} %>
 
@@ -38,12 +49,12 @@
   No exercises available.
 <% else %>
   <% student_exercise_versions.each do |e| %>
-      \textbf{
-        <%= e.covered_standard.name %>
-        (version <%= e.id %>-<%= e.exercise_id %>):
-      }
-    <%= e.exercise.description.html_safe %>
-
+    \exercise{%
+      <%= e.covered_standard.name %>
+      (version <%= e.id %>)%
+    }{
+      <%= e.exercise.description.html_safe %>
+    }
   <% end %>
 <% end %>
 
