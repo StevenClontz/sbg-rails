@@ -2,19 +2,19 @@ class AssessmentsController < ApplicationController
   before_action :set_assessment, only: [:show, :edit, :update, :destroy, :print]
   before_action :set_course
 
-  # GET /attempts
-  # GET /attempts.json
+  # GET /assessments
+  # GET /assessments.json
   def index
     @assessments = Assessment
       .where(course:@course)
   end
 
-  # GET /attempts/1
-  # GET /attempts/1.json
+  # GET /assessments/1
+  # GET /assessments/1.json
   def show
   end
 
-  # GET /attempts/1/print.tex
+  # GET /assessments/1/print.tex
   def print
     @exercise_versions = ExerciseVersion
       .includes(:exercise, :students, covered_standard: :standard)
@@ -22,17 +22,18 @@ class AssessmentsController < ApplicationController
     @students = Student.where(course:@course)
   end
 
-  # GET /attempts/new
+  # GET /assessments/new
   def new
     @assessment = Assessment.new(course:@course)
   end
 
-  # GET /attempts/1/edit
+  # # GET /assessments/1/edit
   def edit
+    render status: :not_implemented, text: "Not implemented"
   end
 
-  # POST /attempts
-  # POST /attempts.json
+  # POST /assessments
+  # POST /assessments.json
   def create
     @assessment = Assessment.new(assessment_params)
 
@@ -47,8 +48,8 @@ class AssessmentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /attempts/1
-  # PATCH/PUT /attempts/1.json
+  # PATCH/PUT /assessments/1
+  # PATCH/PUT /assessments/1.json
   def update
     respond_to do |format|
       if @assessment.update(assessment_params)
@@ -61,12 +62,12 @@ class AssessmentsController < ApplicationController
     end
   end
 
-  # DELETE /attempts/1
-  # DELETE /attempts/1.json
+  # DELETE /assessments/1
+  # DELETE /assessments/1.json
   def destroy
     @assessment.destroy
     respond_to do |format|
-      format.html { redirect_to course_attempts_url(@course), notice: 'Attempt was successfully destroyed.' }
+      format.html { redirect_to course_assessments_url(@course), notice: 'Attempt was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
