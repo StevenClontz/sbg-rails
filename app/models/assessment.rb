@@ -16,7 +16,9 @@ class Assessment < ApplicationRecord
         course_student_ids = course.student_ids
         student_ids_slices = course_student_ids
           .shuffle
-          .each_slice(course_student_ids.length / exercises.length)
+          .each_slice(
+            (course_student_ids.length + exercises.length - 1) / exercises.length
+          )
           .to_a
         exercises.each_with_index do |exercise,index|
           ExerciseVersion.create(
