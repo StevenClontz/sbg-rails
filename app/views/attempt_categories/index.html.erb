@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Default attempt points</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +14,6 @@
     <% @attempt_categories.each do |attempt_category| %>
       <tr>
         <td><%= attempt_category.name %></td>
-        <td><%= attempt_category.default_attempt_points %></td>
         <td><%= link_to 'Show', [attempt_category.course,attempt_category] %></td>
         <td><%= link_to 'Edit', edit_course_attempt_category_path(attempt_category.course,attempt_category) %></td>
         <td><%= link_to 'Destroy',  [attempt_category.course,attempt_category], method: :delete, data: { confirm: 'Are you sure?' } %></td>

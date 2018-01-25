@@ -4,6 +4,7 @@ class Standard < ApplicationRecord
   has_many :attempts
   has_many :covered_standards, dependent: :destroy
   has_many :assessments, through: :covered_standards
+  has_many :exercises
 
   default_scope do
     order(:standard_category_id, :name)
