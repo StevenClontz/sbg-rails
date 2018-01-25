@@ -80,6 +80,6 @@ class AssessmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assessment_params
-      params.require(:assessment).permit(:name, standard_ids: []).merge(course:@course)
+      params.require(:assessment).permit(:name, :tex_header, standard_ids: []).merge(course:@course)
     end
 end
