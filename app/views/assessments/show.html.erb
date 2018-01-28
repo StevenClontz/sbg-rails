@@ -20,9 +20,10 @@
       <li>
         <%= covered_standard.standard.name %>
         <ul>
-          <% covered_standard.exercises.each do |exercise| %>
+          <% covered_standard.exercise_versions.each do |exercise_version| %>
             <li>
-              <%= link_to "Exercise #{exercise.id}", [@course, exercise] %>
+              <%= link_to "Exercise #{exercise_version.exercise_id}", [@course, exercise_version.exercise] %>
+              (version <%= exercise_version.id %>)
             </li>
           <% end %>
         </ul>
