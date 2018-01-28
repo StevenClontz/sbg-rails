@@ -1,5 +1,5 @@
 class AssessmentsController < ApplicationController
-  before_action :set_assessment, only: [:show, :edit, :update, :destroy, :print]
+  before_action :set_assessment, only: [:show, :edit, :update, :destroy, :print, :solutions]
   before_action :set_course
 
   # GET /assessments
@@ -20,6 +20,10 @@ class AssessmentsController < ApplicationController
       .includes(:exercise, :students, covered_standard: :standard)
       .where(covered_standards: {assessment: @assessment})
     @students = Student.where(course:@course)
+  end
+
+  # GET /assessments/1/print/solutions.tex
+  def solutions
   end
 
   # GET /assessments/new

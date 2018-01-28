@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Print Assessment from LaTeX', print_course_assessment_path(@assessment.course,@assessment, format: :tex) %>
+<%= link_to 'print.tex', print_course_assessment_path(@assessment.course,@assessment, format: :tex) %> |
+<%= link_to 'solutions.tex', print_solutions_course_assessment_path(@assessment.course,@assessment, format: :tex) %>
 
 <p>
   <strong>Name:</strong>
@@ -33,4 +34,5 @@
 </p>
 
 <%= link_to 'Print', print_course_assessment_path(@assessment.course,@assessment, format: :tex) %> |
+<%= link_to 'Solutions', print_solutions_course_assessment_path(@assessment.course,@assessment, format: :tex) %> |
 <%= link_to 'Index', course_assessments_path(@assessment.course) %>

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :assessments do
       member do
         get :print
+        get "print/solutions", action: :solutions
       end
     end
     resources :grade_specifications
