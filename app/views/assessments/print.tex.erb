@@ -41,7 +41,11 @@
 <% @students.each do |student| %>
 \renewcommand{\headerText}{<%= @assessment.name %> -- <%=student.name%>}
 
-<% student_exercise_versions = @exercise_versions.select{|e| e.students.include? student} %>
+<%
+  student_exercise_versions = @exercise_versions.select do |e|
+    e.students.include?(student) && e.standard.unmastered_by_student?(student)
+  end
+%>
 
 <% if student_exercise_versions.length == 0 %>
   No exercises available.

@@ -14,6 +14,10 @@ class Standard < ApplicationRecord
     standard_category.satisfactory_limit
   end
 
+  def unmastered_by_student? student
+    student.count_satisfactories_for_standard(self) < satisfactory_limit
+  end
+
   def success_index
     students = Student.includes(:attempts).where(course:course)
     successes = students
