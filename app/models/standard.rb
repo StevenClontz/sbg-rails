@@ -25,4 +25,34 @@ class Standard < ApplicationRecord
       .reduce(:+)
     successes.to_f / students.length
   end
+
+  def create_exercises_from_file filepath
+    source = File.readlines filepath
+    exercises = []
+    state = :waiting
+    source.each do |line|
+      case state
+      when :waiting
+        if line.start_with? '\begin{problem}'
+          state = :problem
+          exercises << Exercise.new(standard_id: id, description: '', solution: '')
+        elsif line.start_with? '\begin{solution}'
+          state = :solution
+        end
+      when :problem
+        if line.start_with? '\end{problem}'
+          state = :waiting
+        else
+          exercises[-1].description << line
+        end
+      when :solution
+        if line.start_with? '\end{solution}'
+          state = :waiting
+        else
+          exercises[-1].solution << line
+        end
+      end
+    end
+    exercises.each(&:save)
+  end
 end
