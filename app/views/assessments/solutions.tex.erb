@@ -48,7 +48,7 @@
 <% if exercise_versions.length == 0 %>
   No exercises available.
 <% else %>
-  <% exercise_versions.each do |e| %>
+  <% exercise_versions.sort_by(&:id).each do |e| %>
     \exercise{%
       Version <%= e.id %>%
     }{
