@@ -10,7 +10,7 @@ class Attempt < ApplicationRecord
     "unsatisfactory" => "✘",
     "incomplete" => "⚠",
     "provisional" => "✱",
-    "provisional_unsatisfactory" => "✱✘",
+    "provisional_unsatisfactory" => "✱⚠",
     "provisional_satisfactory" => "✱✔",
     "satisfactory" => "✔",
     "unknown" => "?"
