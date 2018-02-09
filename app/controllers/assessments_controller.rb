@@ -28,7 +28,15 @@ class AssessmentsController < ApplicationController
 
   # GET /assessments/new
   def new
-    @assessment = Assessment.new(course:@course)
+    if (assessments = Assessment.where(course: @course)).length > 0
+      last_tex_header = assessments.last.tex_header
+    else
+      last_tex_header = ''
+    end
+    @assessment = Assessment.new(
+      course: @course,
+      tex_header: last_tex_header
+    )
   end
 
   # # GET /assessments/1/edit
