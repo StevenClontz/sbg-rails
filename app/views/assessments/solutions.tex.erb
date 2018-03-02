@@ -54,7 +54,7 @@
     }{
       <%= e.exercise.description.html_safe %>
     }{
-      <%= e.exercise.solution.html_safe %>
+      <%= e.exercise.solution.html_safe unless e.exercise.solution.nil? %>
     }
   <% end %>
 <% end %>
