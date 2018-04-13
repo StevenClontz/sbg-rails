@@ -31,6 +31,23 @@
 
 }
 
+\makeatletter
+\newcommand{\ensurePageNumberIsZeroModFour}{%
+  \count@=\the\c@page%<---
+  \@tempcnta=\count@
+  \divide\@tempcnta by 4
+  \multiply\@tempcnta by 4
+  \count@=\numexpr\count@-\@tempcnta\relax
+  \ifnum\count@>0
+    \loop\ifnum\count@<4
+      \null\clearpage
+      \advance\count@\@ne
+    \repeat
+  \fi
+}
+\makeatother
+
+
 <%= @assessment.tex_header %>
 
 
@@ -60,6 +77,9 @@
   <% end %>
 <% end %>
 
+\ensurePageNumberIsZeroModFour
+
+\hspace{0em}
 \newpage
 
 <% end %>
