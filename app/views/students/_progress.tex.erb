@@ -28,23 +28,37 @@
 \vspace{1em}
 
 \begin{center}
-\begin{tabular}{|c|c|c|c|c|c|}\hline
+\begin{tabular}{|c||c|c|c|c||c|}\hline
   &
   <% GradeSpecification::GRADE_HASH.values.each do |grade| %>
     \textbf{Req. for <%= grade %>:}&
   <% end %>
-  \textbf{You've Earned}
+  \textbf{You've Earned}\\\hline\hline
       <% unless grade_specifications.select{|s|s[:requirement]=="satisfactories"}.empty? %>
-        \\\hline
         <%= GradeSpecification::REQUIREMENT_HASH["satisfactories"]%> &
           <% GradeSpecification::GRADE_HASH.values.each do |grade| %>
               <% if spec = grade_specifications
                 .select{|s|s[:requirement]=="satisfactories"&&s[:grade]==grade}.first %>
-                <%= spec.amount %>&
-              <% end %>
+                <%= spec.amount %>
+              <% end %>&
           <% end %>
           <%= student.count_satisfactories %>
+	  \\\hline
         <% end %>
-  \\\hline
+    <% standard_categories.each do |standard_category| %>
+      <% unless grade_specifications.select{|s|s[:requirement]=="standards_with_one_satisfactory_in_category"&&s.standard_category_id==standard_category.id}.empty? %>
+            <%= standard_category.name %> with
+            <%= Attempt::MARK_HASH["satisfactory"]%>
+          &
+          <% GradeSpecification::GRADE_HASH.values.each do |grade| %>
+              <% if spec = grade_specifications
+                .select{|s|s[:requirement]=="standards_with_one_satisfactory_in_category"&&s.standard_category_id==standard_category.id&&s[:grade]==grade}.first %>
+                <%= spec.amount %>
+              <% end %>&
+          <% end %>
+            <%= student.count_standards_with_one_satisfactory_in_category standard_category %>
+        \\\hline
+      <% end %>
+    <% end %>
 \end{tabular}
 \end{center}
