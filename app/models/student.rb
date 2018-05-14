@@ -53,4 +53,23 @@ class Student < ApplicationRecord
     return 0 if attempts.empty?
     attempts.map{|a|a.attempt_points_used || 0}.reduce(:+)
   end
+
+  def self.to_csv
+    student_attrs = %w{id name school_identifier email}
+    attempt_attrs = %w(standard_id standard attempted_on mark)
+    CSV.generate(headers: true) do |csv|
+      csv << (student_attrs + attempt_attrs)
+      all.each do |student|
+        csv << student_attrs.map{|attr| student.send(attr)}
+        student.attempts.each do |attempt|
+          csv << Array.new(4) + [
+            attempt.standard_id,
+            attempt.standard.name,
+            attempt.attempted_on,
+            attempt[:mark]
+          ]
+        end
+      end
+    end
+  end
 end

@@ -74,6 +74,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html
       format.tex
+      format.csv { send_data @students.to_csv }
     end
   end
 
