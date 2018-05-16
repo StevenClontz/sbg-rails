@@ -124,8 +124,8 @@ ActiveRecord::Schema.define(version: 20180125184759) do
     t.string   "email"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-    t.integer  "course_id"
     t.integer  "attempt_points_earned"
+    t.integer  "course_id"
     t.integer  "section_id"
     t.index ["course_id"], name: "index_students_on_course_id"
     t.index ["section_id"], name: "index_students_on_section_id"
