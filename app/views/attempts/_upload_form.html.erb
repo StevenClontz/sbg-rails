@@ -1,0 +1,37 @@
+<%= form_for [attempt.course,attempt], url: {action: :import} do |f| %>
+  <% if attempt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(attempt.errors.count, "error") %> prohibited this attempt from being saved:</h2>
+
+      <ul>
+      <% attempt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :attempt_category %>
+    <%= f.collection_select(:attempt_category_id, AttemptCategory.where(course:attempt.course), :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :attempted_on %>
+    <%= f.date_field :attempted_on %>
+  </div>
+
+  <div class="field">
+    <%= f.label :standard %>
+    <%= f.collection_select(:standard_id, Standard.joins(:standard_category).where(standard_categories:{course:attempt.course}), :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :file %>
+    <%= f.file_field :file %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit("Import Attempts") %>
+  </div>
+<% end %>

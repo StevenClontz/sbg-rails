@@ -31,8 +31,8 @@ class Attempt < ApplicationRecord
     ["provisional_satisfactory","satisfactory"].include?(self[:mark])
   end
 
-  def self.create_from_gradescope_csv(file,attempt_category_id,standard_id,date)
-    CSV.foreach(file.path, headers: true) do |row|
+  def self.create_from_gradescope_csv filepath, params
+    CSV.foreach(filepath, headers: true) do |row|
       break if row[0].nil?
       student_id = Student.where(school_identifier: row[2]).pluck(:id).first
       result = "unknown"
@@ -40,10 +40,7 @@ class Attempt < ApplicationRecord
       result = "provisional" if row[6]=="true"
       result = "incomplete" if row[7]=="true"
       result = "unsatisfactory" if row[8]=="true"
-      self.create(
-        attempt_category_id: attempt_category_id,
-        standard_id: standard_id, 
-        attempted_on: date, 
+      self.new(params).update_attributes(
         mark: result, 
         student_id: student_id,
         note: "imported from Gradescope"

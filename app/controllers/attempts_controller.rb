@@ -59,6 +59,19 @@ class AttemptsController < ApplicationController
     end
   end
 
+  # GET /attempts/import
+  def upload
+    @attempt = Attempt.new(course:@course)
+  end
+
+  # POST /attempts/import
+  def import
+    Attempt.create_from_gradescope_csv(
+      params[:attempt][:file].path, attempt_params
+    )
+    redirect_to course_attempts_path, notice: "Attempts successfully imported!"
+  end    
+
   # POST /attempts/create_many
   def create_many
     attempt_defaults = params.require(:attempt_defaults).permit(

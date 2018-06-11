@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   root 'static_pages#home', as: :home
-  # get '/progress', to: 'static_pages#progress', as: :progress
-  # get '/grades', to: 'static_pages#grades', as: :grades
   resources :courses do
     member do
       get :progress
@@ -23,6 +21,8 @@ Rails.application.routes.draw do
     resources :attempts do
       collection do
         get :index_recent_provisionals, layout: 'index'
+        get :import, action: :upload
+        post :import
         post :create_many
       end
     end

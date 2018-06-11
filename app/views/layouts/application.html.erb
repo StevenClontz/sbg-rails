@@ -20,6 +20,7 @@
       <%= link_to "Courses", :courses %>
       <% if @course && @course.id %>
         | <%= link_to "New Attempts", new_course_attempt_path(@course) %>
+          <%= link_to "(import)", import_course_attempts_path(@course) %>
         | <%= link_to "Progress", progress_course_path(@course) %>
           <%= link_to "(.tex)", progress_course_path(@course, format: :tex) %>
           <%= link_to "(.csv)", progress_course_path(@course, format: :csv) %>
