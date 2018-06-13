@@ -56,13 +56,15 @@ class Student < ApplicationRecord
 
   def self.to_csv
     student_attrs = %w{id name school_identifier email}
-    attempt_attrs = %w(standard_id standard attempted_on mark)
+    attempt_attrs = %w(attempt_category_id attempt_category standard_id standard attempted_on mark)
     CSV.generate(headers: true) do |csv|
       csv << (student_attrs + attempt_attrs)
       all.each do |student|
         csv << student_attrs.map{|attr| student.send(attr)}
         student.attempts.each do |attempt|
           csv << Array.new(4) + [
+            attempt.attempt_category_id,
+            attempt.attempt_category.name,
             attempt.standard_id,
             attempt.standard.name,
             attempt.attempted_on,

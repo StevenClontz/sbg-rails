@@ -69,7 +69,7 @@ class AttemptsController < ApplicationController
     Attempt.create_from_gradescope_csv(
       params[:attempt][:file].path, attempt_params
     )
-    redirect_to course_attempts_path, notice: "Attempts successfully imported!"
+    redirect_to import_course_attempts_path, notice: "Attempts successfully imported!"
   end    
 
   # POST /attempts/create_many
