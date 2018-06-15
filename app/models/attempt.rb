@@ -34,13 +34,13 @@ class Attempt < ApplicationRecord
   def self.create_from_gradescope_csv filepath, params
     CSV.foreach(filepath, headers: true) do |row|
       break if row[0].nil?
-      student_id = Student.where(school_identifier: row[2]).pluck(:id).first
+      student_id = Student.where(school_identifier: row[3]).pluck(:id).first
       result = "unknown"
-      result = "satisfactory" if row[5]=="true"
-      result = "provisional" if row[6]=="true"
-      result = "incomplete" if row[7]=="true"
-      result = "unsatisfactory" if row[8]=="true"
-      self.new(params).update_attributes(
+      result = "satisfactory" if row[7]=="true"
+      result = "provisional" if row[8]=="true"
+      result = "incomplete" if row[9]=="true"
+      result = "unsatisfactory" if row[10]=="true"
+      self.new(params).update_attributes!(
         mark: result, 
         student_id: student_id,
         note: "imported from Gradescope"
