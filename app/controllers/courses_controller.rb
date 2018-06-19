@@ -73,6 +73,7 @@ class CoursesController < ApplicationController
       .order(name: :asc)
     respond_to do |format|
       format.html
+      format.pdf
       format.tex
       format.csv { send_data @students.to_csv }
     end

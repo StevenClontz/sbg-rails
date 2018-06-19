@@ -30,6 +30,10 @@ gem 'jbuilder', '~> 2.5'
 # Added for rails 5.2
 gem 'bootsnap', '~>1.3.0'
 
+#For PDFs
+gem 'rails-latex', '~>2.2.1'
+
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
