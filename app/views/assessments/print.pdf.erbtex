@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 
+\usepackage{tikz}
 \usepackage{pgfplots}
 
 \usepackage{enumerate}
@@ -31,23 +32,6 @@
 
 }
 
-\makeatletter
-\newcommand{\ensurePageNumberIsZeroModFour}{%
-  \count@=\the\c@page%<---
-  \@tempcnta=\count@
-  \divide\@tempcnta by 4
-  \multiply\@tempcnta by 4
-  \count@=\numexpr\count@-\@tempcnta\relax
-  \ifnum\count@>0
-    \loop\ifnum\count@<4
-      \null\clearpage
-      \advance\count@\@ne
-    \repeat
-  \fi
-}
-\makeatother
-
-
 <%= @assessment.tex_header %>
 
 
@@ -64,22 +48,24 @@
   end
 %>
 
-<% if student_exercise_versions.length == 0 %>
-  No exercises available.
-<% else %>
-  <% student_exercise_versions.each do |e| %>
-    \exercise{%
-      <%= e.covered_standard.name %>
-      (version <%= e.id %>)%
-    }{
-      <%= e.exercise.description.html_safe %>
-    }
+  <% @exercise_versions.each do |e| %>
+    <% if e.students.include?(student) %>
+    <% if e.standard.unmastered_by_student?(student) %>
+      \exercise{%
+        <%= e.covered_standard.name %>
+        (version <%= e.id %>)%
+      }{
+        <%= e.exercise.description.html_safe %>
+      }
+    <% else %>
+     \exercise{%
+       <%= e.covered_standard.name %>%
+     }{\textit{You've already mastered this standard.}}
+    <% end %>
+    <% end %>
   <% end %>
-<% end %>
 
-\ensurePageNumberIsZeroModFour
 
-\hspace{0em}
 \newpage
 
 <% end %>
