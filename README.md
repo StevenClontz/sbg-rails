@@ -20,11 +20,10 @@ Here are screenshots of commit
 
 To use the app on your computer:
 
-1. Clone the repo
+1. Clone the repo: `git clone https://github.com/StevenClontz/tbil-la.git`
 2. Check you're running the version of Ruby defined in `.ruby-version`.
-3. `bundle install` gems
-4. Create a file `local/password.txt` with two lines: 
-   the first line is a username and the second line is a password. 
-   These are required to access the app. 
+  - I recommend using <https://github.com/rbenv/rbenv> to manage Ruby versions.
+3. `gem install bundler` (if necessary) then `bundle install` to install libraries
+4. Follow the instructions in `local/_password.txt`
 5. `bin/rails s` to run the server
 6. Go to `http://localhost:3000` in your browser to access the app. 
