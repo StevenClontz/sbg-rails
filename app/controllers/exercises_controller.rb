@@ -24,6 +24,18 @@ class ExercisesController < ApplicationController
   def edit
   end
 
+  # GET /exercises/import
+  def import
+  end
+
+  # POST /exercises/import
+  def create_from_import
+    Exercise.create_from_csv(
+      params[:file].path
+    )
+    redirect_to import_course_exercises_path, notice: "Exercises successfully imported!"
+  end    
+
   # POST /exercises
   # POST /exercises.json
   def create

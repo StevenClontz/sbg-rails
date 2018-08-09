@@ -6,7 +6,12 @@ Rails.application.routes.draw do
     end
 
     resources :sections
-    resources :exercises
+    resources :exercises do
+      collection do
+        get :import
+        post :import, action: :create_from_import
+      end
+    end
     resources :assessments do
       member do
         get :print

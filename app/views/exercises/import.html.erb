@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Import Exercises</h1>
+
+<p>Upload a CSV file using the following convenientions.</p>
+
+<ul>
+  <li>No header row.</li>
+  <li>First column: either the standard's name or ID#</li>
+  <li>Second column: the description of the exercise</li>
+  <li>Third column: an optional solution</li>
+</ul>
+
+<%= render 'import_form' %>
+
+<%= link_to 'Index', course_exercises_path(@course) %>
