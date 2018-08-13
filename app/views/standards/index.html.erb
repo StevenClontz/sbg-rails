@@ -5,6 +5,7 @@
 <table  class="table table-striped">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Category</th>
       <th>Name</th>
       <th>Description</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @standards.each do |standard| %>
       <tr>
+        <td><%= standard.id %></td>
         <td><%= standard.standard_category.name %></td>
         <td><%= standard.name %></td>
         <td><%= standard.description %></td>
