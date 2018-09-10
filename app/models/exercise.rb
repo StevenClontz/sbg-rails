@@ -3,10 +3,13 @@ class Exercise < ApplicationRecord
   has_one :standard_category, through: :standard
   has_one :course, through: :standard_category
 
-  def self.create_from_csv filepath
+  def self.create_from_csv filepath, course_id
     CSV.foreach(filepath) do |row|
       next if row[0].nil?
-      unless standard_id = Standard.where(name: row[0]).pluck(:id).first
+      possible_standards = Standard.where(name:row[0]).select{|s| s.course.id==course_id}
+      if possible_standards.length > 0
+        standard_id = possible_standards[0].id
+      else
         standard_id = row[0]
       end
       self.create(

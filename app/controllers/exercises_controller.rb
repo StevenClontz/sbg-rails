@@ -31,7 +31,7 @@ class ExercisesController < ApplicationController
   # POST /exercises/import
   def create_from_import
     Exercise.create_from_csv(
-      params[:file].path
+      params[:file].path, @course.id
     )
     redirect_to import_course_exercises_path, notice: "Exercises successfully imported!"
   end    
