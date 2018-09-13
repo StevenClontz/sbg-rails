@@ -31,10 +31,12 @@ class Attempt < ApplicationRecord
     ["provisional_satisfactory","satisfactory"].include?(self[:mark])
   end
 
-  def self.create_from_gradescope_csv filepath, params
+  def self.create_from_gradescope_csv filepath, params, course_id
     CSV.foreach(filepath, headers: true) do |row|
       break if row[0].nil?
-      student_id = Student.where(school_identifier: row[3]).pluck(:id).first
+      student_id = Student
+        .where(school_identifier: row[3], course_id: course_id)
+        .pluck(:id).first
       result = "unknown"
       result = "satisfactory" if row[7]=="true"
       result = "provisional" if row[8]=="true"

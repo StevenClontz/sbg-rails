@@ -67,7 +67,7 @@ class AttemptsController < ApplicationController
   # POST /attempts/import
   def import
     Attempt.create_from_gradescope_csv(
-      params[:attempt][:file].path, attempt_params
+      params[:attempt][:file].path, attempt_params, @course.id
     )
     redirect_to import_course_attempts_path, notice: "Attempts successfully imported!"
   end    
