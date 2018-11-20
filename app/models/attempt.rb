@@ -6,6 +6,8 @@ class Attempt < ApplicationRecord
 
   before_create :set_attempt_points_used_to_default
 
+  default_scope { order(:attempted_on) }
+
   MARK_HASH = {
     "unsatisfactory" => "✘",
     "incomplete" => "⚠",

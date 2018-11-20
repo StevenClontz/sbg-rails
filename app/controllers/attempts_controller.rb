@@ -5,7 +5,7 @@ class AttemptsController < ApplicationController
   # GET /attempts
   # GET /attempts.json
   def index
-    @attempts = Attempt
+    @attempts = Attempt.unscoped
       .includes(:standard,:attempt_category,:student,:course)
       .where(students:{course:@course})
       .order(attempted_on: :desc)
@@ -15,7 +15,7 @@ class AttemptsController < ApplicationController
   end
 
   def index_recent_provisionals
-    @attempts = Attempt
+    @attempts = Attempt.unscoped
       .includes(:standard,:attempt_category,:student,:course)
       .where(mark:"provisional",students:{course:@course})
       .order(attempted_on: :desc)
