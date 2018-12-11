@@ -8,6 +8,7 @@
       <th>Name</th>
       <th>School identifier</th>
       <th>Email</th>
+      <th><%= Attempt::MARK_HASH["satisfactory"] %> Count</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= student.name %></td>
         <td><%= student.school_identifier %></td>
         <td><%= student.email %></td>
+        <td><%= student.count_satisfactories %></td>
         <td><%= link_to 'Show', course_student_path(@course,student) %></td>
         <td><%= link_to 'Edit', edit_course_student_path(@course,student) %></td>
         <td><%= link_to 'Destroy', course_student_path(@course,student), method: :delete, data: { confirm: 'Are you sure?' } %></td>
