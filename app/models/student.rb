@@ -60,9 +60,8 @@ class Student < ApplicationRecord
     CSV.generate(headers: true) do |csv|
       csv << (student_attrs + attempt_attrs)
       all.each do |student|
-        csv << student_attrs.map{|attr| student.send(attr)}
         student.attempts.each do |attempt|
-          csv << Array.new(4) + [
+          csv << student_attrs.map{|attr| student.send(attr)} + [
             attempt.attempt_category_id,
             attempt.attempt_category.name,
             attempt.standard_id,
