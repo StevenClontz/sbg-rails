@@ -7,7 +7,7 @@ class Standard < ApplicationRecord
   has_many :exercises
 
   default_scope do
-    order(:standard_category_id, :name)
+    order(:standard_category_id, :id)
   end
 
   def satisfactory_limit
