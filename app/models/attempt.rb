@@ -10,7 +10,7 @@ class Attempt < ApplicationRecord
 
   MARK_HASH = {
     "unsatisfactory" => "✘",
-    "incomplete" => "⚠",
+    "incomplete" => "ⓘ",
     "provisional" => "✱",
     "provisional_unsatisfactory" => "✱⚠",
     "provisional_satisfactory" => "✱✔",
