@@ -7,7 +7,7 @@
 \usepackage{booktabs}
 
 \newunicodechar{✘}{\(\times\)}
-\newunicodechar{⚠}{{\fontencoding{U}\fontfamily{futs}\selectfont\char 66\relax}}
+\newunicodechar{ⓘ}{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {i}}}}
 \newunicodechar{✔}{\(\checkmark\)}
 \newunicodechar{✱}{\(\ast\)}
 
