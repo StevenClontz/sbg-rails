@@ -27,6 +27,11 @@
     <%= f.collection_select :standard_ids, assessment.course.standards, :id, :name, {include_hidden: false}, {multiple: true} %>
   </div>
 
+  <div class="field">
+    <%= label_tag :number_of_versions %>
+    <%= select_tag :number_of_versions, options_for_select(1..8,4) %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

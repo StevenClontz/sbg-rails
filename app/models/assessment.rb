@@ -3,15 +3,11 @@ class Assessment < ApplicationRecord
   has_many :standards, through: :covered_standards
   belongs_to :course
 
-  after_create :assign_exercises_to_students
-
-  private
-
-  def assign_exercises_to_students
+  def assign_exercises_to_students(number_of_versions=4)
     covered_standards.each do |covered_standard|
       exercises = Exercise.where(
         standard_id: covered_standard.standard_id
-      ).order("RANDOM()").limit(4)
+      ).order("RANDOM()").limit(number_of_versions)
       if exercises.length > 0
         course_student_ids = course.student_ids
         student_ids_slices = course_student_ids

@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
   has_many :students
+  has_many :sections
   has_many :standard_categories
   has_many :standards, through: :standard_categories
   has_many :grade_specifications

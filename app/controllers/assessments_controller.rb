@@ -48,9 +48,10 @@ class AssessmentsController < ApplicationController
   # POST /assessments.json
   def create
     @assessment = Assessment.new(assessment_params)
-
+    
     respond_to do |format|
       if @assessment.save
+        @assessment.assign_exercises_to_students(params[:number_of_versions]) 
         format.html { redirect_to [@course, @assessment], notice: 'Assessment was successfully created.' }
         format.json { render :show, status: :created, location: @assessment }
       else

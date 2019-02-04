@@ -26,8 +26,8 @@
         <ul>
           <% covered_standard.exercise_versions.each do |exercise_version| %>
             <li>
-              <%= link_to "Exercise #{exercise_version.exercise_id}", [@course, exercise_version.exercise] %>
-              (version <%= exercise_version.id %>)
+              <%= link_to "Version #{exercise_version.id}", [@course, exercise_version.exercise] %>
+              (Exercise <%= exercise_version.exercise_id %>)
             </li>
           <% end %>
         </ul>
