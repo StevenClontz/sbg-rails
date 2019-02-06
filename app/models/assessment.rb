@@ -1,7 +1,13 @@
 class Assessment < ApplicationRecord
   has_many :covered_standards, dependent: :destroy
   has_many :standards, through: :covered_standards
+  has_many :exercise_versions, through: :covered_standards
   belongs_to :course
+
+  def exercise_version_for_student(student,standard)
+    covered_standard = covered_standards.where(standard:standard).first
+    exercise_versions.where(covered_standard:covered_standard).select{|ev| ev.students.include? student}.first
+  end
 
   def assign_exercises_to_students(number_of_versions=4)
     covered_standards.each do |covered_standard|

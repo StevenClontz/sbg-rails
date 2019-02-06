@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :assessments do
       member do
         get :print
+        get "print/long", action: :print_long
         get "print/solutions", action: :solutions
       end
     end
