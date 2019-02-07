@@ -42,6 +42,7 @@
 \begin{document}
 
 <% if @print_long %>
+  \renewcommand{\headerTextLeft}{Name:\\ ID:}
   \renewcommand{\headerTextRight}{<%= @assessment.name %> Template}
   <% @assessment.standards.each_with_index do |s,i| %>
     \exercise{<%= s.name %>}
@@ -52,7 +53,7 @@
 <% end %>
 
 <% @students.each do |student| %>
-  \renewcommand{\headerTextLeft}{<%=student.name%>}
+  \renewcommand{\headerTextLeft}{Name: <%=student.name%>\\ ID:}
   \renewcommand{\headerTextRight}{<%= @assessment.name %>}
 
   <% @assessment.standards.each_with_index do |s,i| %>
