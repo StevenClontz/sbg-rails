@@ -43,7 +43,7 @@
 
 <% if @print_long %>
   \renewcommand{\headerTextLeft}{Name:\\ ID:}
-  \renewcommand{\headerTextRight}{<%= @assessment.name %> Template}
+  \renewcommand{\headerTextRight}{<%= @assessment.name %>}
   <% @assessment.standards.each_with_index do |s,i| %>
     \exercise{<%= s.name %>}
     \vfill
