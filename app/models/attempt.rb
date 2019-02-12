@@ -40,10 +40,10 @@ class Attempt < ApplicationRecord
         .where(school_identifier: row[3], course_id: course_id)
         .pluck(:id).first
       result = "unknown"
-      result = "satisfactory" if row[7]=="true"
-      result = "provisional" if row[8]=="true"
-      result = "incomplete" if row[9]=="true"
-      result = "unsatisfactory" if row[10]=="true"
+      result = "satisfactory" if row[7].downcase=="true"
+      result = "provisional" if row[8].downcase=="true"
+      result = "incomplete" if row[9].downcase=="true"
+      result = "unsatisfactory" if row[10].downcase=="true"
       self.new(params).update_attributes!(
         mark: result, 
         student_id: student_id,
