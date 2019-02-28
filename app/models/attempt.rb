@@ -35,7 +35,8 @@ class Attempt < ApplicationRecord
 
   def self.create_from_gradescope_csv filepath, params, course_id
     CSV.foreach(filepath, headers: true) do |row|
-      break if row[3].nil?
+      next if row[3].nil? || 
+        Student.where(school_identifier: row[3], course_id: course_id).empty?
       student_id = Student
         .where(school_identifier: row[3], course_id: course_id)
         .pluck(:id).first
