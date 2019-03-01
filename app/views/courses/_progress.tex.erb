@@ -34,7 +34,7 @@ For <%= @course.name %>. Generated on <%= Time.now.inspect %>
     <% student.attempts.each do |attempt| %>
         <%= attempt.attempted_on.strftime("%F") if attempt.attempted_on %>
         <%= attempt.attempt_category.name %>
-        <%= attempt.standard.name %>
+        <%= attempt.standard.name[0..5] %>
         <%= attempt.mark %>\newline
     <% end %>
   <% else %>
