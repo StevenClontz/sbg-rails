@@ -1,5 +1,5 @@
 class AssessmentsController < ApplicationController
-  before_action :set_assessment, only: [:show, :edit, :update, :destroy, :print, :print_long, :solutions, :print_jared]
+  before_action :set_assessment, only: [:show, :edit, :update, :destroy, :print, :print_long, :solutions, :print_jared, :print_pruned]
   before_action :set_course
 
   # GET /assessments
@@ -31,12 +31,27 @@ class AssessmentsController < ApplicationController
     @students = Student.where(course:@course)
   end
 
-  # GET /assessments/1/print.tex
+  # GET /assessments/1/print/long.tex
   def print_long
     @exercise_versions = ExerciseVersion
       .includes(:exercise, :students, covered_standard: :standard)
       .where(covered_standards: {assessment: @assessment})
     @students = Student.where(course:@course)
+    @print_long = true
+  end
+
+  # GET /assessments/1/print/pruned.tex
+  def print_pruned
+    @exercise_versions = ExerciseVersion
+      .includes(:exercise, :students, covered_standard: :standard)
+      .where(covered_standards: {assessment: @assessment})
+    all_students = Student.where(course:@course)
+    @students = all_students.select do |s| 
+      @assessment.covered_standards.map{|t| t.standard.unmastered_by_student?(s)}.any?
+    end
+    @pruned_students = all_students.select do |s| 
+      @assessment.covered_standards.none?{|t| t.standard.unmastered_by_student?(s)}
+    end
     @print_long = true
   end
 

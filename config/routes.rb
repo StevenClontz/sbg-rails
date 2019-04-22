@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         get :print
         get "print/jared", action: :print_jared
         get "print/long", action: :print_long
+        get "print/pruned", action: :print_pruned
         get "print/solutions", action: :solutions
       end
     end
