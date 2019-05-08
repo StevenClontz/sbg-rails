@@ -2,6 +2,13 @@
 
 <h1>Students</h1>
 
+<h3>Emails</h3>
+<textarea readonly>
+<% @students.each do |student| %><%= student.email %>, <% end %>
+</textarea>
+
+<h3>Index of students</h3>
+
 <table class="table table-striped">
   <thead>
     <tr>
