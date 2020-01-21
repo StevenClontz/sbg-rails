@@ -35,16 +35,16 @@ class Attempt < ApplicationRecord
 
   def self.create_from_gradescope_csv filepath, params, course_id
     CSV.foreach(filepath, headers: true) do |row|
-      next if row[3].nil? || 
-        Student.where(school_identifier: row[3], course_id: course_id).empty?
+      next if row[4].nil? || 
+        Student.where(school_identifier: row[4], course_id: course_id).empty?
       student_id = Student
-        .where(school_identifier: row[3], course_id: course_id)
+        .where(school_identifier: row[4], course_id: course_id)
         .pluck(:id).first
       result = "unknown"
-      result = "satisfactory" if row[7].downcase=="true"
-      result = "provisional" if row[8].downcase=="true"
-      result = "incomplete" if row[9].downcase=="true"
-      result = "unsatisfactory" if row[10].downcase=="true"
+      result = "satisfactory" if row[8].downcase=="true"
+      result = "provisional" if row[9].downcase=="true"
+      result = "incomplete" if row[10].downcase=="true"
+      result = "unsatisfactory" if row[11].downcase=="true"
       self.new(params).update_attributes!(
         mark: result, 
         student_id: student_id,
