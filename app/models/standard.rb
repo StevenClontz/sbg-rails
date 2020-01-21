@@ -27,35 +27,14 @@ class Standard < ApplicationRecord
   end
 
   def create_exercises_from_mastr filepath
-    seeds = (20..99).to_a.sample(20)
+    seeds = (100...200).to_a.sample(20)
     exercises = []
     seeds.each do |seed|
-      source = File.readlines(filepath + "/0" + seed.to_s + ".tex")
-      state = :waiting
-      source.each do |line|
-        case state
-        when :waiting
-          if line.strip.start_with? '\begin{exerciseStatement}'
-            state = :statement
-            exercises << Exercise.new(standard_id: id, description: '', solution: '')
-          elsif line.strip.start_with? '\begin{exerciseAnswer}'
-            state = :answer
-          end
-        when :statement
-          if line.strip.start_with? '\end{exerciseStatement}'
-            state = :waiting
-          else
-            exercises[-1].description << line
-          end
-        when :answer
-          if line.strip.start_with? '\end{exerciseAnswer}'
-            state = :waiting
-          else
-            exercises[-1].solution << line
-          end
-        end
-      end
-      exercises.each(&:save)
+      source = File.read(filepath + "/" + seed.to_s + ".tex")
+      exercise = Exercise.new(standard_id: id)
+      exercise.description = source.split('\begin{exerciseStatement}').last.split('\end{exerciseStatement}').first
+      exercise.solution = source.split('\begin{exerciseAnswer}').last.split('\end{exerciseAnswer}').first
+      exercise.save
     end
   end
 end
