@@ -6,6 +6,9 @@
 <%= link_to 'Print Long', print_long_course_assessment_path(@assessment.course,@assessment, format: :pdf) %>
 <%= link_to '(.tex)', print_long_course_assessment_path(@assessment.course,@assessment, format: :tex) %>
 |
+<%= link_to 'Print Generic', print_generic_course_assessment_path(@assessment.course,@assessment, format: :pdf) %>
+<%= link_to '(.tex)', print_generic_course_assessment_path(@assessment.course,@assessment, format: :tex) %>
+|
 <%= link_to 'Solutions', print_solutions_course_assessment_path(@assessment.course,@assessment, format: :pdf) %> 
 <%= link_to '(.tex)', print_solutions_course_assessment_path(@assessment.course,@assessment, format: :tex) %> 
 

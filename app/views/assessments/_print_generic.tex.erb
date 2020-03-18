@@ -1,0 +1,61 @@
+\documentclass[12pt]{article}
+
+\usepackage[letterpaper,margin=1in]{geometry}
+
+\setlength{\parindent}{0pt}
+\parskip=0.5em
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+\usepackage{enumerate}
+
+\newcommand{\footerText}{
+  <%= @course.name %>
+}
+
+\newcommand{\headerTextLeft}{}
+\newcommand{\headerTextRight}{}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}% Default \headrulewidth is 0.4pt
+\renewcommand{\footrulewidth}{0pt}% Default \footrulewidth is 0pt
+\lhead{\footnotesize\bf\headerTextLeft}
+\rhead{\footnotesize\bf\headerTextRight}
+\cfoot{\footnotesize\footerText}
+
+
+\newcommand{\exercise}[2]{
+  \textbf{#1:} #2
+
+}
+
+<%= @assessment.tex_header %>
+
+
+
+
+\begin{document}
+
+<% student = @students.first %>
+  \renewcommand{\headerTextLeft}{Name: \\ ID:}
+  \renewcommand{\headerTextRight}{<%= @assessment.name %>}
+
+
+
+  <% @assessment.standards.each_with_index do |s,i| %>
+      <% ev = @assessment.exercise_version_for_student(student,s) %>
+      \exercise{%
+       <%= s.name %> %
+        (version <%= ev.id %>)%
+      }{
+        <%= ev.exercise.description.html_safe %>
+      }
+  <% end %>
+
+
+\end{document}

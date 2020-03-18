@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       member do
         get :print
         get "print/jared", action: :print_jared
+        get "print/generic", action: :print_generic
         get "print/long", action: :print_long
         get "print/pruned", action: :print_pruned
         get "print/solutions", action: :solutions
