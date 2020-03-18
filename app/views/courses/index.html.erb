@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<h3>All Emails</h3>
+<textarea readonly>
+<% @students.each do |student| %><%= student.email %>, <% end %>
+</textarea>
+
+
 <h1>Courses</h1>
 
 <table class="table table-striped">
