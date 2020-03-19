@@ -23,7 +23,7 @@ class AssessmentsController < ApplicationController
     @print_long = false
   end
 
-  # GET /assessments/1/generic.tex
+  # GET /assessments/1/print/generic.tex
   def print_generic
     @exercise_versions = ExerciseVersion
       .includes(:exercise, :students, covered_standard: :standard)
@@ -31,7 +31,7 @@ class AssessmentsController < ApplicationController
     @students = Student.where(course:@course)
   end
 
-  # GET /assessments/1/jared.tex
+  # GET /assessments/1/print/jared.tex
   def print_jared
     @exercise_versions = ExerciseVersion
       .includes(:exercise, :students, covered_standard: :standard)
