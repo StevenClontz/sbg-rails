@@ -54,6 +54,17 @@ class Student < ApplicationRecord
     attempts.map{|a|a.attempt_points_used || 0}.reduce(:+)
   end
 
+  def progress_matrix
+    matrix = []
+    matrix << ["Progress Report", name, email]
+    course.standard_categories.each do |sc|
+      matrix << sc.standards.map(&:name)
+      matrix << sc.standards.map{|st| count_satisfactories_for_standard(st)}
+    end
+    matrix << ["Total Mastery Checkmarks:", count_satisfactories]
+    matrix
+  end
+
   def self.to_csv
     student_attrs = %w{id name school_identifier email}
     attempt_attrs = %w(attempt_category_id attempt_category standard_id standard attempted_on mark)
