@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_01_25_184759) do
+ActiveRecord::Schema.define(version: 2020_03_22_111529) do
 
   create_table "assessments", force: :cascade do |t|
     t.string "name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2018_01_25_184759) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "uses_attempt_points", default: false
+    t.string "gd_folder"
   end
 
   create_table "covered_standards", force: :cascade do |t|
@@ -127,6 +128,7 @@ ActiveRecord::Schema.define(version: 2018_01_25_184759) do
     t.integer "course_id"
     t.integer "attempt_points_earned"
     t.integer "section_id"
+    t.string "gd_sheet"
     t.index ["course_id"], name: "index_students_on_course_id"
     t.index ["section_id"], name: "index_students_on_section_id"
   end

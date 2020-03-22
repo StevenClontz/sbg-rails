@@ -70,13 +70,21 @@ class Student < ApplicationRecord
     matrix
   end
 
-  def save_progress_to_drive
-    session = GoogleDrive::Session.from_config("local/gdconfig.json")
-    spreadsheet = session.spreadsheet_by_key("1WaDFB49VlVF8q9GD9H7KBV2ZFu-O2fkJsp3zdyt3nCI")
-    spreadsheet.rename("#{course.name} Progress Report for #{name}")
-    ws = spreadsheet.worksheets[0]
+  def create_gd_sheet
+    if gd_sheet.blank?
+      session = gd_session
+      spreadsheet = session.create_spreadsheet("#{name} progress for #{course.name}")
+      session.collection_by_id(course.gd_folder).add(spreadsheet)
+      update!(gd_sheet: spreadsheet.id)
+    end
+  end
+
+  def save_gd_sheet
+    spreadsheet = gd_session.spreadsheet_by_key(gd_sheet)
+    ws = spreadsheet.add_worksheet("Progress (#{DateTime.now.to_s})")
     ws.update_cells(1,1,progress_matrix)
     ws.save
+    spreadsheet.worksheets[0].delete
   end
 
   def self.to_csv

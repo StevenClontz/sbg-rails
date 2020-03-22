@@ -29,4 +29,16 @@ class Course < ApplicationRecord
       ]).count
     "#{all_attempts.count} attempts, #{satisfactory_count} ✔s, #{provisional_count} ✱s"
   end
+
+  def create_gd_folder
+    session = GoogleDrive::Session.from_config("local/gdconfig.json")
+    if gd_folder.blank?
+      update!(gd_folder: session.create_collection("Grades for #{name}").id)
+    end
+  end
+
+  def sync_progress_to_gd
+    create_gd_folder
+    sections.each(&:sync_progress_to_gd)
+  end
 end
