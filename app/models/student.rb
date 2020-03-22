@@ -56,13 +56,27 @@ class Student < ApplicationRecord
 
   def progress_matrix
     matrix = []
+    matrix << ["Updated on:", DateTime.now.strftime("%Y-%m-%d")]
     matrix << ["Progress Report", name, email]
     course.standard_categories.each do |sc|
       matrix << sc.standards.map(&:name)
       matrix << sc.standards.map{|st| count_satisfactories_for_standard(st)}
     end
     matrix << ["Total Mastery Checkmarks:", count_satisfactories]
+    matrix << ["Attempt History:"]
+    attempts.each do |a|
+      matrix << [a.standard.name, a.attempted_on.strftime("%Y-%m-%d"), a.mark]
+    end
     matrix
+  end
+
+  def save_progress_to_drive
+    session = GoogleDrive::Session.from_config("local/gdconfig.json")
+    spreadsheet = session.spreadsheet_by_key("1WaDFB49VlVF8q9GD9H7KBV2ZFu-O2fkJsp3zdyt3nCI")
+    spreadsheet.rename("#{course.name} Progress Report for #{name}")
+    ws = spreadsheet.worksheets[0]
+    ws.update_cells(1,1,progress_matrix)
+    ws.save
   end
 
   def self.to_csv

@@ -33,6 +33,9 @@ gem 'bootsnap', '~>1.3.0'
 #For PDFs
 gem 'rails-latex', '~>2.2.1'
 
+#For Google Drive
+gem 'google_drive'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
